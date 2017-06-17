@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  </div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div class="row"> 
+
+        <div class="col-xs-5">
+          <div class="dashboard">
+            <h1 class="name">Welcome Back, Peter</h1>
+            <h2 class="date">{{ date }}</h2>
+            <h2 class="time">{{ time }}</h2>
+            <h3 class="status">Completed Tasks: <span class="digit">{{ countComplete() }}</span></h3>
+            <h3 class="status">Incomplete Tasks: <span class="digit">{{ countIncomplete() }}</span></h3>
+            <h3 class="status">{{ percentDone() }}% Done</h3>
+          </div>
+        </div>
+    
+        <div class="col-xs-5 col-xs-offset-1">
+
+
+
+          <div class="list-task">
+            <div class="window">
+
+              <i 
+                class="fa fa-angle-double-up scroll-indicator top" 
+                aria-hidden="true"
+                ng-show="distanceFromTop !== 0"></i>
+
+              <div ng-repeat="t in todos">
+                <div class="task" ng-class="{ 'isDone': t.isDone }">
+                  <i 
+                    class="fa fa-circle-thin task-checker" 
+                    aria-hidden="true" 
+                    ng-hide="t.isDone"
+                    ng-click="toggleComplete(t)"></i>
+                  <i 
+                    class="fa fa-check-circle task-checker" 
+                    aria-hidden="true" 
+                    ng-show="t.isDone"
+                    ng-click="toggleComplete(t)"></i>
+                  <p class="task-content">{{ t.content }}</p>
+                  <i class="fa fa-times-circle task-delete" aria-hidden="true"></i>
+                </div>
+              </div>
+
+              <i 
+                class="fa fa-angle-double-down ng-hide scroll-indicator bottom" 
+                aria-hidden="true"
+                ng-show="distanceFromBottom !== 0"></i>
+
+            </div>
+          </div>
+
+          <div class="create-task">
+          <input 
+            type="text" 
+            placeholder="What next?" 
+            ng-model="newTaskContent"
+            name="new-task"
+            ng-keydown="enterInput($event)"></input>
+          <i 
+            class="fa fa-plus task-adder" 
+            aria-hidden="true"
+            ng-click="addTask()"></i>
+          </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- pokemonApp.directive('setClassWhenAtTop', function ($window) {
+    var $win = angular.element($window); // wrap window object as jQuery object
+    
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            
+            var topClass = attrs.setClassWhenAtTop, // get CSS class from directive's attribute value
+            offsetTop = $('nav.navbar').height();
+            
+            $win.on('scroll', function (e) {
+                if ($win.scrollTop() >= offsetTop) {
+                    element.addClass(topClass);
+                } else {
+                    element.removeClass(topClass);
+                }
+            });
+        }
+    };
+}); -->

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app='ydyApp'>
+
+<head>
+  <title>YouDoYou</title>
+  <!-- jQuery -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,700" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Include Angular App -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+  <script src="app.js"></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<body ng-controller='mainController'>
+
+  <div class="background" ng-controller='backgroundController'>
+    <video autoplay loop class="fillWidth">
+      <source src="videos/Keep_Running.mp4" type="video/mp4" /> Your browser does not support the video tag. I suggest you upgrade your browser.
+      <source src="videos/Keep_Running.webm" type="video/webm" /> Your browser does not support the video tag. I suggest you upgrade your browser.
+    </video>
+    <div class="poster hidden">
+      <img src="videos/Keep_Running.jpg" alt="">
+    </div>
+
+  </div>
+
+
+  <nav class="navbar">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">YouDoYou</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="#/about">About</a></li>
+          <li><a href="#/todos">Todos</a>
+          <li><a href="#">Login</a>
+          </li>
+          <li><a href="#">Logout</a>
+          </li>
+
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+
+
+  <ng-view></ng-view>
+</body>
+
+</html>
+
+
+<!--   <canvas id='background'></canvas>
+      <div class="homepage-hero-module">
+         <div class="video-container">
+            <div class="filter"></div>
+            <video autoplay loop class="fillWidth">
+               <source src="videos/Keep_Running.mp4" type="video/mp4" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+               <source src="videos/Keep_Running.webm" type="video/webm" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+               <img src="videos/Keep_Running.jpg" alt="">
+            </div> -->

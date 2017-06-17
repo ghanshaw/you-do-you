@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html ng-app='ydyApp' >
+   <head>
+      <title>YouDoYou</title>
+      <!-- jQuery -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js' ></script>
+      <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,700" rel="stylesheet">
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <!-- Include Angular App -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+      <script src="app.js" ></script>
+      <!-- Stylesheet -->
+      <link rel="stylesheet" href="css/style.css" />
+      <script>
+         //jQuery is required to run this code
+         $( document ).ready(function() {
+         
+         scaleVideoContainer();
+         
+         initBannerVideoSize('.video-container .poster img');
+         initBannerVideoSize('.video-container .filter');
+         initBannerVideoSize('.video-container video');
+         
+         $(window).on('resize', function() {
+             scaleVideoContainer();
+             scaleBannerVideoSize('.video-container .poster img');
+             scaleBannerVideoSize('.video-container .filter');
+             scaleBannerVideoSize('.video-container video');
+         });
+         
+         });
+         
+         function scaleVideoContainer() {
+         
+         var height = $(window).height() + 5;
+         var unitHeight = parseInt(height) + 'px';
+         $('.homepage-hero-module').css('height',unitHeight);
+         
+         }
+         
+         function initBannerVideoSize(element){
+         
+         $(element).each(function(){
+             $(this).data('height', $(this).height());
+             $(this).data('width', $(this).width());
+         });
+         
+         scaleBannerVideoSize(element);
+         
+         }
+         
+         function scaleBannerVideoSize(element){
+         
+         var windowWidth = $(window).width(),
+         windowHeight = $(window).height() + 5,
+         videoWidth,
+         videoHeight;
+         
+         // console.log(windowHeight);
+         
+         $(element).each(function(){
+             var videoAspectRatio = $(this).data('height')/$(this).data('width');
+         
+             $(this).width(windowWidth);
+         
+             if(windowWidth < 1000){
+                 videoHeight = windowHeight;
+                 videoWidth = videoHeight / videoAspectRatio;
+                 $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+         
+                 $(this).width(videoWidth).height(videoHeight);
+             }
+         
+             $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+         
+         });
+         }
+      </script>
+   </head>
+   <body ng-controller='mainController'>
+
+        <div class="background" ng-controller='backgroundController'>
+            <video autoplay loop class="fillWidth">
+               <source src="videos/Keep_Running.mp4" type="video/mp4" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+               <source src="videos/Keep_Running.webm" type="video/webm" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+               <img src="videos/Keep_Running.jpg" alt="">
+            </div>    
+
+        </div>
+
+
+        <nav class="navbar">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">YouDoYou</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+              
+              <ul class="nav navbar-nav navbar-right">
+
+              <li><a href="#">About</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Logout</a></li>
+
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+</nav>
+
+
+
+         
+         <div class="container-fluid">
+             
+         <div class="row">
+            <div class="col-lg-12">
+               <!-- Check for presence of global success/error messages --> 
+               <div class="main-message">           
+                <h1 class="">Do What You Want, Successfully</h1>
+                <h3>A Simple Todo App That Makes Your Goals Attainable</h3>
+                </div>
+               <div class="col-md-4 col-md-offset-4">
+                    
+
+                    <div class="login">
+                        <div class="row toggle">
+                            <div class="col-xs-6 pill sign-up">Sign Up</div>
+                            <div class="col-xs-6 pill log-in">Log In</div>
+                        </div>
+                      <div class="row login-form">
+
+
+
+                         <form method="post" action="/users/login">
+                            <div class="form-group">
+                               <input type="text" class="form-control" placeholder="Username" name="username">
+                            </div>
+                            <div class="form-group">
+                               <input type="password" class="form-control" placeholder="Password" name="password">
+                            </div>
+                            <button type="submit" class="btn">Submit</button>
+                         </form>
+                         <button type="submit" class="btn">Guest Login</button>
+                      </div>
+                   </div>
+                   </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      
+   </body>
+</html>
+
+
+    <!--   <canvas id='background'></canvas>
+      <div class="homepage-hero-module">
+         <div class="video-container">
+            <div class="filter"></div>
+            <video autoplay loop class="fillWidth">
+               <source src="videos/Keep_Running.mp4" type="video/mp4" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+               <source src="videos/Keep_Running.webm" type="video/webm" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+               <img src="videos/Keep_Running.jpg" alt="">
+            </div> -->

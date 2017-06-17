@@ -1,0 +1,245 @@
+h1, h2, h3, h4, h5, h6, p, li, a, input, button {
+  font-family: 'Overpass', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: white; }
+
+input:focus {
+  outline: none; }
+
+canvas {
+  /*	width: 100%;
+  	height: 100%;*/
+  /*background-color: #eee;*/
+  /*background-color: slategrey;*/
+  position: absolute;
+  z-index: -1000;
+  display: none; }
+
+.navbar {
+  background-color: #635e5e;
+  border-radius: 0px;
+  border: none; }
+  .navbar .navbar-brand {
+    color: white; }
+  .navbar li a {
+    color: white;
+    font-weight: 900; }
+
+.background {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: -1000; }
+
+.main-message {
+  margin-top: 60px;
+  margin-bottom: 50px; }
+  .main-message h1, .main-message h3 {
+    color: white;
+    text-align: center; }
+  .main-message h1 {
+    font-size: 4.7rem; }
+  .main-message h3 {
+    margin-top: 10px; }
+
+.login.wrapper {
+  background-color: rgba(0, 188, 212, 0.78);
+  padding: 50px;
+  margin-top: 130px;
+  color: white; }
+
+.login {
+  border: 4px solid white;
+  color: white;
+  /* background-color: rgba(255, 255, 255, 0.63); */
+  border-radius: 10px; }
+  .login button {
+    width: 100%;
+    background-color: transparent;
+    border-radius: 0px;
+    color: white;
+    border: 3px solid white;
+    font-family: 'Overpass';
+    text-transform: uppercase;
+    height: 50px;
+    font-weight: 900;
+    border-radius: 5px; }
+    .login button:hover {
+      color: white;
+      background-color: rgba(51, 51, 51, 0.59); }
+  .login .toggle {
+    margin: 0px; }
+    .login .toggle .pill {
+      height: 70px;
+      /* border-bottom: 0; */
+      position: relative;
+      z-index: 110;
+      color: white;
+      font-family: 'Overpass';
+      text-align: center;
+      line-height: 70px;
+      font-size: 2rem; }
+      .login .toggle .pill.sign-up {
+        /*border-bottom: 4px solid white;*/
+        border-right: 2px solid white; }
+      .login .toggle .pill.log-in {
+        border-bottom: 4px solid white;
+        border-left: 2px solid white;
+        background-color: rgba(72, 70, 70, 0.46);
+        color: #c5c5c5;
+        /* font-size: 1.8rem; */
+        font-weight: 100;
+        border-top-right-radius: 5px; }
+  .login .login-form {
+    padding: 50px; }
+    .login .login-form form {
+      margin-bottom: 20px; }
+    .login .login-form input {
+      height: 50px;
+      font-family: 'Overpass';
+      color: black;
+      outline: none;
+      border-radius: 5px; }
+
+.list-task {
+  max-height: 500px;
+  overflow: hidden;
+  position: relative; }
+  .list-task .window {
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 500px;
+    padding-right: 17px;
+    width: 100%;
+    box-sizing: content-box; }
+  .list-task .scroll-indicator {
+    color: white;
+    text-align: center;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    position: absolute;
+    width: 97%; }
+    .list-task .scroll-indicator.top {
+      color: #635e5e;
+      background: linear-gradient(0deg, transparent, white); }
+    .list-task .scroll-indicator.bottom {
+      color: #635e5e;
+      background: linear-gradient(0deg, white, transparent);
+      bottom: 0px;
+      margin: 0px; }
+
+.task {
+  color: white;
+  border: 4px solid white;
+  border-radius: 50px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-width: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: #635e5e; }
+  .task .task-content {
+    font-size: 1.8rem;
+    display: inline;
+    margin-left: 20px;
+    color: #635e5e; }
+  .task .task-checker {
+    font-size: 2.2rem;
+    border-radius: 100%; }
+    .task .task-checker:hover {
+      font-weight: 900; }
+  .task .task-delete {
+    float: right;
+    font-size: 2rem; }
+  .task.isDone {
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(175, 175, 175, 0.7); }
+    .task.isDone .task-content {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: line-through; }
+
+.create-task {
+  margin-top: 30px;
+  position: relative;
+  color: white; }
+  .create-task input {
+    width: 100%;
+    height: 70px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    border-bottom: 4px solid white;
+    padding-left: 20px; }
+  .create-task input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+    color: white; }
+  .create-task .task-adder {
+    position: absolute;
+    top: 36%;
+    right: 3%;
+    font-size: 2rem; }
+
+.dashboard {
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.79);
+  padding: 30px;
+  border-radius: 30px; }
+  .dashboard h1, .dashboard h2, .dashboard h3, .dashboard h4, .dashboard h5, .dashboard h6 {
+    color: #635e5e; }
+  .dashboard .status {
+    margin-top: 5px; }
+  .dashboard .date {
+    margin-bottom: 7px; }
+  .dashboard .time {
+    margin-top: 0px;
+    margin-bottom: 18px; }
+  .dashboard .name {
+    font-weight: 600; }
+  .dashboard .digit {
+    font-weight: 900; }
+
+/*.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}*/
+
+/*# sourceMappingURL=style.css.map */
