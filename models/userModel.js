@@ -4,18 +4,19 @@ var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    username: {
-        type: String,
-        index: true
-    },
     password: {
         type: String
     },
     email: {
-        type: String
+        type: String,
+        index: true
     },
     name: {
         type: String
+    },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
     }
 })
 
@@ -30,14 +31,15 @@ User.createUser = function(newUser, callback) {
             newUser.save(callback);
         });
     });
-
 }
 
-// Retrieve user with username
-User.getUserByUsername = function(username, callback) {
+User.hasUser
 
-    var query = { username: username };
-    User.findOne(query, callback);
+// Retrieve user with email
+User.getUserByEmail = function(email, callback) {
+
+    var query = { email: email };
+    
 
 }
 

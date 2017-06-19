@@ -22,18 +22,18 @@ var path = require('path');
 var flash = require('connect-flash');
 var passport = require('passport');
 
-var routes = require('./routes/index');
+// Aquire routes
+var api = require('./routes/api');
 var users = require('./routes/users')
+var index = require('./routes/index')
 
-var LocalStrategy = require('passport-local').Strategy;
+// var LocalStrategy = require('passport-local').Strategy;
 
 // ================================================= //
 // Init App
 // ================================================= //
 
 var app = express();
-
-
 
 // ================================================= //
 // Set View Engine
@@ -49,8 +49,9 @@ app.set('view engine', 'handlebars');
 // ================================================= //
 
 // Set static folder
-//app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(favicon(__dirname + '/public/favicon.ico'));
+// app.use('/', static(__dirname + '/public'));
 
 // Body Parser
 app.use(bodyParser.json());
@@ -67,6 +68,9 @@ app.use(session({
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
+
+// var initPassport = require('./passport-init');
+// initPassport(passport);
 
 // Express Validator
 app.use(expressValidator({
@@ -101,7 +105,8 @@ app.use(function(req, res, next) {
 
 
 // Routing
-app.use('/', routes);
+app.use('/', index);
+app.use('/api', api);
 app.use('/users', users);
 
 

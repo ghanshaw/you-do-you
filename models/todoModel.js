@@ -1,13 +1,19 @@
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
-var todoSchema = new Schema({
-    username: String,
-    todo: String,
-    isDone: Boolean,
-    hasAttachment: Boolean
+var todoSchema = new mongoose.Schema({
+    email: String,
+    text: String,
+    isDone: {
+        type: Boolean,
+        default: false 
+    },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
+    }
 })
 
-var Todos = mongoose.model('Todos', todoSchema);
+// Declare a model called Todo which was schema todoSchema
+var Todos = mongoose.model('Todo', todoSchema);
 
 module.exports = Todos;

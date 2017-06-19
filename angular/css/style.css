@@ -91,9 +91,9 @@ body.window-scroll-off {
       width: 50px;
       display: inline; }
     .navbar a.navbar-brand img.text {
-      height: 30px;
+      height: 25px;
       display: inline;
-      margin-left: 7px; }
+      margin-left: 10px; }
   .navbar li a {
     color: white;
     font-weight: 900; }
