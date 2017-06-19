@@ -1,6 +1,13 @@
 $darkfont: #635e5e;
 $transwhite: rgba(255, 255, 255, 0.75);
 $transgrey: rgba(175, 175, 175, 0.70);
+$transblack: rgba(50, 50, 50, 0.50);
+
+html, body {
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+}
 
 
 h1, h2, h3, h4, h5, h6, p, li, a, input, button {
@@ -23,14 +30,125 @@ canvas {
 	display: none;
 }
 
+body {
+	&.window-scroll-off {
+		overflow: hidden;
+	}
+}
+
+#wrapper {
+	min-height: 100%;
+	position: relative;
+	
+
+	/* SS Screens */
+    @media (max-width: 991px) {	 
+    	padding-bottom: 200px;
+	}
+}
+
+
+.navbar {
+
+	div.navbar-collapse {
+		padding: 0px;
+	}
+
+	ul.nav {
+		position: relative;
+		background-color: $darkfont;
+	    z-index: 400;
+	    margin: 0;
+	    padding-top: 0px;
+	    padding: 0px;
+
+	    li > a {
+
+	    	&:hover, &:focus {
+		    background-color: transparent;
+		    border-bottom: 4px solid white;
+		    height: 70px;
+
+			    /* XS Screens */
+			    @media (max-width: 768px) {	 
+			    	height: auto;
+			    	border: none;
+				    background-color: rgba(0, 0, 0, 0.19);
+				}
+			}
+
+		}
+
+	}
+
+	.navbar-toggle {
+		border: 2px solid white;
+		margin: 13px;
+	}
+
+	.navbar-toggle .icon-bar {
+	    background-color: white;
+	}
+
+	.user-select-background {
+	    position: absolute;
+	    z-index: 400;
+	    padding: 10px;
+	    background: rgba(255, 255, 255, 0.89);
+	    top: 75px;
+	    left: -20px;
+	    width: 350px;
+
+	    /*XS Screens*/
+	    @media (max-width: 768px) {	  
+			position: fixed;
+		    /*top: 373px;*/
+		    left: initial;
+		    width: 100%;
+		}
+	
+
+		
+		.thumb {
+			float: left;
+	    	margin: 5px 5px;
+
+	    	img {
+	    		/*display: inline;*/
+	    	}
+		}
+	}
+}
 
 .navbar {
 	background-color: #635e5e;
 	border-radius: 0px;
     border: none;
+    height: 70px;
+    margin-bottom: 0px;
 
-    .navbar-brand {
-    	color: white;
+    .navbar-nav>li>a {
+    	line-height: 40px;
+    	text-align: center;
+    }
+
+    a.navbar-brand {
+		color: white;
+			
+		img {
+
+			&.logo {
+			width: 50px;
+		    display: inline;
+			}
+		
+
+    		&.text {
+    			height: 30px;
+			    display: inline;
+			    margin-left: 7px;
+    		}
+    	}
     }
 
 	li {
@@ -43,16 +161,91 @@ canvas {
 
 
 .background {
-	position: absolute;
+	position: fixed;
     overflow: hidden;
     width: 100%;
     height: 100%;
     z-index: -1000;
+
+    .user-choice {
+    	height: 100%;
+	    background: url('../images/backgrounds/space.jpg');
+	    background-size: cover;
+
+    	img {
+    		width: 100%;
+    		display: none;
+    	}
+    }
+}
+
+.about {
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.39);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+    &.closed {
+    	/*display: none;*/
+    }
+
+    .about-background {
+    	width: 100%;
+	    height: 100%;
+	    position: absolute;
+    }
+
+    .title {
+    	text-align: center;
+	    margin-top: 0px;
+	    margin-bottom: 20px;
+	    font-weight: bold;
+    }
+
+	.about-modal {
+	    width: 600px;
+	    background-color: white;
+	    z-index: 550;
+	    padding: 40px;
+	    border-radius: 25px;
+	    max-width: 80%;
+	    position: relative;
+
+	    h1, h2, h3, h4, h5, h6 {
+	    	color: $darkfont;
+	    	line-height: 1.3;
+	    }
+
+	    .exit {
+	    	color: $darkfont;
+	    	position: absolute;
+		    right: 30px;
+		    top: 30px;
+
+	    }
+
+	    .logo {
+	    	width: 70px;
+		    text-align: center;
+		    display: block;
+		    margin: 0 auto;
+		    margin-top: 35px;
+
+	    }
+	}
 }
 
 
 .main-message {
-	margin-top: 60px;
+	margin-top: 40px;
 	margin-bottom: 50px;
 	h1, h3 {
 		color: white;
@@ -75,13 +268,13 @@ canvas {
 	color: white;
 }
 
-.login {
+.authentication {
 	
 	
 	border: 4px solid white;
     color: white;
-    /* background-color: rgba(255, 255, 255, 0.63); */
     border-radius: 10px;
+    margin-bottom: 80px;
     
 
     	 button {
@@ -97,8 +290,8 @@ canvas {
 		    border-radius: 5px;
 
 		    &:hover {
-		    	    color: white;
-    background-color: rgba(51, 51, 51, 0.59);
+		    	color: white;
+    			background-color: rgba(51, 51, 51, 0.59);
 		    }
 	    }
 
@@ -107,36 +300,47 @@ canvas {
 
 		.pill {
 		
-	    height: 70px;
-	    /* border-bottom: 0; */
-	    position: relative;
-	    z-index: 110;
-	    color: white;
-	    font-family: 'Overpass';
-	    text-align: center;
-	    line-height: 70px;
-	    font-size: 2rem;
+		    height: 70px;
+		    position: relative;
+		    z-index: 110;
+		    color: white;
+		    font-family: 'Overpass';
+		    text-align: center;
+		    line-height: 70px;
+		    font-size: 2rem;
+		    outline: none;
 
-	    	&.sign-up {
-	    		/*border-bottom: 4px solid white;*/
-	    		border-right: 2px solid white;	 
+		    background-color: rgba(72, 70, 70, 0.46);
+		    border-bottom: 4px solid white;
+		    color: #ddd;
+
+	    	&.log-in {
+	    		border-right: 2px solid white;	
+
+	    		&.active {
+	    			color: white;
+	    			border-bottom: none;
+	    			background: transparent;
+	    		}
 
 	    	}
 
-	    	&.log-in {
-	    		border-bottom: 4px solid white;
+	    	&.sign-up {
 	    		border-left: 2px solid white;	
-	    		    background-color: rgba(72, 70, 70, 0.46);
-			    color: #c5c5c5;
-			    /* font-size: 1.8rem; */
 			    font-weight: 100;
 			    border-top-right-radius: 5px; 
-	    		   	}
+
+			    &.active {
+			    	color: white;
+			    	border-bottom: none;
+			    	background: transparent;
+	    		}
+	    	}
 		}
 	}
 
 
-	.login-form {
+	.authentication-form {
 		padding: 50px;
 		
 		form {
@@ -153,6 +357,10 @@ canvas {
 			}
 	    
 	}
+}
+
+.todos {
+	margin-top: 30px;
 }
 
 .list-task {
@@ -193,6 +401,9 @@ canvas {
 	}
 }
 
+
+
+
 .task {
 	color: white;
 	border: 4px solid white;
@@ -203,12 +414,156 @@ canvas {
     background-color: $transwhite;
     color: $darkfont;
 
-	.task-content {
-		font-size: 1.8rem;
-		display: inline;
-    	margin-left: 20px;
-    	color: $darkfont;
+    &.table {
+    	display: table;
+
+    	.table-cell {
+    		display: table-cell;
+    		vertical-align: middle;
+    		background-color: transparent;
+    	}
+    }
+
+    &.isDone {
+		color: $transwhite;
+		background-color: $transgrey;
+		.display-content {
+			color: $transwhite;
+			    text-decoration: line-through;
+		}
 	}
+
+    .display-todo {
+
+    	width: 100%;
+    	max-width: 100px;
+    	cursor: pointer;
+
+    	&:focus {
+    		outline: none;
+    	}
+
+    	.display-content {
+
+			font-size: 1.8rem;
+	    	color: $darkfont;
+	    	outline: none;
+	    	display: inline-block;
+		    margin-bottom: 0px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    padding-left: 12px;
+		    overflow: hidden;
+		    vertical-align: middle;
+		    max-width: 70%;
+		    width: 70%;
+
+		    &:focus {
+		    	outline: none;
+		    }
+
+		    &.no-date {
+		    	max-width: 96%
+		    }
+		
+	    }
+
+	    .display-date {
+
+	    	display: inline-block;
+		    width: 28%;
+		    text-align: right;
+		    color: grey;
+		    margin-bottom: 0px;
+		    padding-right: 10px;
+		    text-align: right;
+		    vertical-align: middle;
+
+		    &.no-date {
+		    	display: none;
+		    }
+
+	    }
+
+    }
+
+    .update-todo {
+    	width: 100%;
+
+    	input.update-content {
+    		width: 66%;
+		    background-color: transparent;
+		    border: 2px solid grey;
+		    margin-left: 2%;
+		    padding-left: 9px;
+		    font-size: 1.5rem;
+		    font-weight: 500;
+    	}
+
+    	input.update-date {
+    		width: 28%;
+		    background-color: transparent;
+		    text-align: right;
+		    border: 2px solid grey;
+		    padding-right: 9px;
+		    margin-right: 2%;
+		    font-size: 1.5rem;
+		    font-weight: 500;
+    	}
+
+    	datepicker {
+			width: auto !important;
+			float: none;
+
+			&.calendar-above {
+
+				._720kb-datepicker-calendar {
+					left: -190px;
+	    			bottom: -55px;
+	    			top: auto;
+	    		}
+			}
+			
+			._720kb-datepicker-calendar {
+				left: -113px;
+    			top: 24px;
+			}	
+
+			._720kb-datepicker-calendar-days-header {
+				background: $transwhite;
+			}
+
+			._720kb-datepicker-calendar-header {
+				background: $darkfont;
+			}
+
+			._720kb-datepicker-calendar-month span {
+				color: white;
+			}
+
+		} 
+
+		.update-save {
+			width: 95%;
+		    height: 27px;
+		    color: grey;
+		    margin-top: 10px;
+		    margin: 10px auto;
+		    display: block;
+		    background-color: transparent;
+		    border: 2px solid grey;
+		    font-weight: 500;
+		    margin-bottom: 0px;
+		}
+
+    }
+
+    input {
+    	color: $darkfont;
+    }
+
+    
+    
 
 	.task-checker {
 		font-size: 2.2rem;
@@ -220,18 +575,10 @@ canvas {
 	}
 
 	.task-delete {
-		float: right;
+		/*float: right;*/
 		font-size: 2rem;
 	}
 
-	&.isDone {
-		color: $transwhite;
-		background-color: $transgrey;
-		.task-content {
-			color: $transwhite;
-			    text-decoration: line-through;
-		}
-	}
 }
 
 .create-task {
@@ -268,6 +615,7 @@ canvas {
 	background-color: rgba(255, 255, 255, 0.79);
 	padding: 30px;
 	border-radius: 30px;
+	margin-bottom: 30px;
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #635e5e;
@@ -294,6 +642,82 @@ canvas {
 		font-weight: 900;
 	}
 }
+
+
+footer {
+	position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.7);
+    /*height: 50px;*/
+    align-items: center;
+    line-height: 50px;
+
+    
+    
+    p {
+    	color: $darkfont;
+    	margin: 0px;
+    	margin: 0px;
+    	height: 50px;
+    	color: #a5a5a5;
+    	text-align: center;
+
+    	a.name {
+    		display: inline;
+    		/*margin-left: 5px;*/
+    	}
+    }
+
+    a {
+    	margin: 0 auto;
+	    width: 100%;
+	    text-align: center;
+	    display: inline-block;
+	    font-weight: 700;
+
+    	&:hover {
+    		color: white;
+    		text-decoration: none;
+    	}
+    	&:focus {
+    		color: white;
+    		/*text-decoration: underline;*/
+    	}
+    }
+}
+
+
+
+.breakpoints {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+	
+	div {
+	    height: 100%;
+	    width: 2px;
+	    position: absolute;
+
+		&.small {
+		    left: 768px;
+		    background-color: aqua;
+		}
+
+		&.medium {
+		    left: 992px;
+		    background-color: crimson;
+		}
+
+		&.large {
+		    background-color: rebeccapurple;
+		    left: 1200px;
+		}
+	}
+}
+
 
 
 

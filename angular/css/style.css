@@ -1,3 +1,8 @@
+html, body {
+  background-color: transparent;
+  height: 100%;
+  width: 100%; }
+
 h1, h2, h3, h4, h5, h6, p, li, a, input, button {
   font-family: 'Overpass', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -15,25 +20,145 @@ canvas {
   z-index: -1000;
   display: none; }
 
+body.window-scroll-off {
+  overflow: hidden; }
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+  /* SS Screens */ }
+  @media (max-width: 991px) {
+    #wrapper {
+      padding-bottom: 200px; } }
+
+.navbar div.navbar-collapse {
+  padding: 0px; }
+.navbar ul.nav {
+  position: relative;
+  background-color: #635e5e;
+  z-index: 400;
+  margin: 0;
+  padding-top: 0px;
+  padding: 0px; }
+  .navbar ul.nav li > a:hover, .navbar ul.nav li > a:focus {
+    background-color: transparent;
+    border-bottom: 4px solid white;
+    height: 70px;
+    /* XS Screens */ }
+    @media (max-width: 768px) {
+      .navbar ul.nav li > a:hover, .navbar ul.nav li > a:focus {
+        height: auto;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.19); } }
+.navbar .navbar-toggle {
+  border: 2px solid white;
+  margin: 13px; }
+.navbar .navbar-toggle .icon-bar {
+  background-color: white; }
+.navbar .user-select-background {
+  position: absolute;
+  z-index: 400;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.89);
+  top: 75px;
+  left: -20px;
+  width: 350px;
+  /*XS Screens*/ }
+  @media (max-width: 768px) {
+    .navbar .user-select-background {
+      position: fixed;
+      /*top: 373px;*/
+      left: initial;
+      width: 100%; } }
+  .navbar .user-select-background .thumb {
+    float: left;
+    margin: 5px 5px; }
+    .navbar .user-select-background .thumb img {
+      /*display: inline;*/ }
+
 .navbar {
   background-color: #635e5e;
   border-radius: 0px;
-  border: none; }
-  .navbar .navbar-brand {
+  border: none;
+  height: 70px;
+  margin-bottom: 0px; }
+  .navbar .navbar-nav > li > a {
+    line-height: 40px;
+    text-align: center; }
+  .navbar a.navbar-brand {
     color: white; }
+    .navbar a.navbar-brand img.logo {
+      width: 50px;
+      display: inline; }
+    .navbar a.navbar-brand img.text {
+      height: 30px;
+      display: inline;
+      margin-left: 7px; }
   .navbar li a {
     color: white;
     font-weight: 900; }
 
 .background {
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   width: 100%;
   height: 100%;
   z-index: -1000; }
+  .background .user-choice {
+    height: 100%;
+    background: url("../images/backgrounds/space.jpg");
+    background-size: cover; }
+    .background .user-choice img {
+      width: 100%;
+      display: none; }
+
+.about {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.39);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .about.closed {
+    /*display: none;*/ }
+  .about .about-background {
+    width: 100%;
+    height: 100%;
+    position: absolute; }
+  .about .title {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-weight: bold; }
+  .about .about-modal {
+    width: 600px;
+    background-color: white;
+    z-index: 550;
+    padding: 40px;
+    border-radius: 25px;
+    max-width: 80%;
+    position: relative; }
+    .about .about-modal h1, .about .about-modal h2, .about .about-modal h3, .about .about-modal h4, .about .about-modal h5, .about .about-modal h6 {
+      color: #635e5e;
+      line-height: 1.3; }
+    .about .about-modal .exit {
+      color: #635e5e;
+      position: absolute;
+      right: 30px;
+      top: 30px; }
+    .about .about-modal .logo {
+      width: 70px;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      margin-top: 35px; }
 
 .main-message {
-  margin-top: 60px;
+  margin-top: 40px;
   margin-bottom: 50px; }
   .main-message h1, .main-message h3 {
     color: white;
@@ -49,12 +174,12 @@ canvas {
   margin-top: 130px;
   color: white; }
 
-.login {
+.authentication {
   border: 4px solid white;
   color: white;
-  /* background-color: rgba(255, 255, 255, 0.63); */
-  border-radius: 10px; }
-  .login button {
+  border-radius: 10px;
+  margin-bottom: 80px; }
+  .authentication button {
     width: 100%;
     background-color: transparent;
     border-radius: 0px;
@@ -65,42 +190,51 @@ canvas {
     height: 50px;
     font-weight: 900;
     border-radius: 5px; }
-    .login button:hover {
+    .authentication button:hover {
       color: white;
       background-color: rgba(51, 51, 51, 0.59); }
-  .login .toggle {
+  .authentication .toggle {
     margin: 0px; }
-    .login .toggle .pill {
+    .authentication .toggle .pill {
       height: 70px;
-      /* border-bottom: 0; */
       position: relative;
       z-index: 110;
       color: white;
       font-family: 'Overpass';
       text-align: center;
       line-height: 70px;
-      font-size: 2rem; }
-      .login .toggle .pill.sign-up {
-        /*border-bottom: 4px solid white;*/
+      font-size: 2rem;
+      outline: none;
+      background-color: rgba(72, 70, 70, 0.46);
+      border-bottom: 4px solid white;
+      color: #ddd; }
+      .authentication .toggle .pill.log-in {
         border-right: 2px solid white; }
-      .login .toggle .pill.log-in {
-        border-bottom: 4px solid white;
+        .authentication .toggle .pill.log-in.active {
+          color: white;
+          border-bottom: none;
+          background: transparent; }
+      .authentication .toggle .pill.sign-up {
         border-left: 2px solid white;
-        background-color: rgba(72, 70, 70, 0.46);
-        color: #c5c5c5;
-        /* font-size: 1.8rem; */
         font-weight: 100;
         border-top-right-radius: 5px; }
-  .login .login-form {
+        .authentication .toggle .pill.sign-up.active {
+          color: white;
+          border-bottom: none;
+          background: transparent; }
+  .authentication .authentication-form {
     padding: 50px; }
-    .login .login-form form {
+    .authentication .authentication-form form {
       margin-bottom: 20px; }
-    .login .login-form input {
+    .authentication .authentication-form input {
       height: 50px;
       font-family: 'Overpass';
       color: black;
       outline: none;
       border-radius: 5px; }
+
+.todos {
+  margin-top: 30px; }
 
 .list-task {
   max-height: 500px;
@@ -139,10 +273,99 @@ canvas {
   border-width: 0px;
   background-color: rgba(255, 255, 255, 0.75);
   color: #635e5e; }
-  .task .task-content {
-    font-size: 1.8rem;
-    display: inline;
-    margin-left: 20px;
+  .task.table {
+    display: table; }
+    .task.table .table-cell {
+      display: table-cell;
+      vertical-align: middle;
+      background-color: transparent; }
+  .task.isDone {
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(175, 175, 175, 0.7); }
+    .task.isDone .display-content {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: line-through; }
+  .task .display-todo {
+    width: 100%;
+    max-width: 100px;
+    cursor: pointer; }
+    .task .display-todo:focus {
+      outline: none; }
+    .task .display-todo .display-content {
+      font-size: 1.8rem;
+      color: #635e5e;
+      outline: none;
+      display: inline-block;
+      margin-bottom: 0px;
+      overflow: hidden;
+      white-space: nowrap;
+      padding-left: 12px;
+      overflow: hidden;
+      vertical-align: middle;
+      max-width: 70%;
+      width: 70%; }
+      .task .display-todo .display-content:focus {
+        outline: none; }
+      .task .display-todo .display-content.no-date {
+        max-width: 96%; }
+    .task .display-todo .display-date {
+      display: inline-block;
+      width: 28%;
+      text-align: right;
+      color: grey;
+      margin-bottom: 0px;
+      padding-right: 10px;
+      text-align: right;
+      vertical-align: middle; }
+      .task .display-todo .display-date.no-date {
+        display: none; }
+  .task .update-todo {
+    width: 100%; }
+    .task .update-todo input.update-content {
+      width: 66%;
+      background-color: transparent;
+      border: 2px solid grey;
+      margin-left: 2%;
+      padding-left: 9px;
+      font-size: 1.5rem;
+      font-weight: 500; }
+    .task .update-todo input.update-date {
+      width: 28%;
+      background-color: transparent;
+      text-align: right;
+      border: 2px solid grey;
+      padding-right: 9px;
+      margin-right: 2%;
+      font-size: 1.5rem;
+      font-weight: 500; }
+    .task .update-todo datepicker {
+      width: auto !important;
+      float: none; }
+      .task .update-todo datepicker.calendar-above ._720kb-datepicker-calendar {
+        left: -190px;
+        bottom: -55px;
+        top: auto; }
+      .task .update-todo datepicker ._720kb-datepicker-calendar {
+        left: -113px;
+        top: 24px; }
+      .task .update-todo datepicker ._720kb-datepicker-calendar-days-header {
+        background: rgba(255, 255, 255, 0.75); }
+      .task .update-todo datepicker ._720kb-datepicker-calendar-header {
+        background: #635e5e; }
+      .task .update-todo datepicker ._720kb-datepicker-calendar-month span {
+        color: white; }
+    .task .update-todo .update-save {
+      width: 95%;
+      height: 27px;
+      color: grey;
+      margin-top: 10px;
+      margin: 10px auto;
+      display: block;
+      background-color: transparent;
+      border: 2px solid grey;
+      font-weight: 500;
+      margin-bottom: 0px; }
+  .task input {
     color: #635e5e; }
   .task .task-checker {
     font-size: 2.2rem;
@@ -150,14 +373,8 @@ canvas {
     .task .task-checker:hover {
       font-weight: 900; }
   .task .task-delete {
-    float: right;
+    /*float: right;*/
     font-size: 2rem; }
-  .task.isDone {
-    color: rgba(255, 255, 255, 0.75);
-    background-color: rgba(175, 175, 175, 0.7); }
-    .task.isDone .task-content {
-      color: rgba(255, 255, 255, 0.75);
-      text-decoration: line-through; }
 
 .create-task {
   margin-top: 30px;
@@ -185,7 +402,8 @@ canvas {
   background-color: white;
   background-color: rgba(255, 255, 255, 0.79);
   padding: 30px;
-  border-radius: 30px; }
+  border-radius: 30px;
+  margin-bottom: 30px; }
   .dashboard h1, .dashboard h2, .dashboard h3, .dashboard h4, .dashboard h5, .dashboard h6 {
     color: #635e5e; }
   .dashboard .status {
@@ -199,6 +417,57 @@ canvas {
     font-weight: 600; }
   .dashboard .digit {
     font-weight: 900; }
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.7);
+  /*height: 50px;*/
+  align-items: center;
+  line-height: 50px; }
+  footer p {
+    color: #635e5e;
+    margin: 0px;
+    margin: 0px;
+    height: 50px;
+    color: #a5a5a5;
+    text-align: center; }
+    footer p a.name {
+      display: inline;
+      /*margin-left: 5px;*/ }
+  footer a {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    font-weight: 700; }
+    footer a:hover {
+      color: white;
+      text-decoration: none; }
+    footer a:focus {
+      color: white;
+      /*text-decoration: underline;*/ }
+
+.breakpoints {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  display: none; }
+  .breakpoints div {
+    height: 100%;
+    width: 2px;
+    position: absolute; }
+    .breakpoints div.small {
+      left: 768px;
+      background-color: aqua; }
+    .breakpoints div.medium {
+      left: 992px;
+      background-color: crimson; }
+    .breakpoints div.large {
+      background-color: rebeccapurple;
+      left: 1200px; }
 
 /*.homepage-hero-module {
     border-right: none;
