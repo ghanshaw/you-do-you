@@ -1,16 +1,21 @@
-var configValues = require('./config');
+var configObj = {}
 
-module.exports = {
-    getDbConnectionString: function() {
+try {
+    var configValues = require('./config');
+
+    configObj.getDbConnectionString = function() {
         return "mongodb://" + configValues.uname + ":" + configValues.pwd + "@ds123722.mlab.com:23722/node-youdoyou";
-    },
+    };
 
-    getExpressSessionSecret: function() {
+    configObj.getExpressSessionSecret = function() {
         return configValues.expressSecret;
-    },
+    };
 
-    getJwtSecret: function() {
+    configObj.getJwtSecret = function() {
         return configValues.jwtSecret;
-    }
-}
+    };
+
+} catch (ex) {}
+
+module.exports = configObj;
 
