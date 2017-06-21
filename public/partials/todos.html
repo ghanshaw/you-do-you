@@ -1,0 +1,146 @@
+<div class="todos container-fluid">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+      <div class="row"> 
+
+        <div class="col-lg-5 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-8 col-sm-offset-2">
+          <div class="dashboard">
+            <h1 class="name">Welcome Back, {{ firstname }}</h1>
+            <h2 class="date">{{ date }}</h2>
+            <h2 class="time">{{ time }}</h2>
+            <h3 class="status">Completed Tasks: <span class="digit">{{ countComplete() }}</span></h3>
+            <h3 class="status">Incomplete Tasks: <span class="digit">{{ countIncomplete() }}</span></h3>
+            <h3 class="status">{{ percentDone() }}% Done</h3>
+          </div>
+        </div>
+<!--         <div layout-gt-xs="row">
+          <div flex-gt-xs>
+            <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+          </div>
+        </div>
+ -->
+
+        <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-2">
+
+
+
+          <div class="list-task">
+            <div class="window" 
+              ng-mouseenter="stopWindowScroll()"
+              ng-mouseleave="resumeWindowScroll()">
+
+              <i 
+                class="fa fa-angle-double-up scroll-indicator top" 
+                aria-hidden="true"
+                ng-show="distanceFromTop !== 0"></i>
+
+
+              <div ng-repeat="t in todos | orderBy: '-created_at' track by t._id ">
+                <div  class="task table" 
+                      ng-class="{ 'isDone': t.isDone }"
+                      ng-mouseenter="enterTask(t)"
+                      ng-mouseleav="leaveTask(t)">
+                  <i 
+                    class="fa fa-circle-thin task-checker table-cell" 
+                    aria-hidden="true" 
+                    ng-hide="t.isDone"
+                    ng-click="toggleComplete(t)"></i>
+                  <i 
+                    class="fa fa-check-circle task-checker table-cell" 
+                    aria-hidden="true" 
+                    ng-show="t.isDone"
+                    ng-click="toggleComplete(t)"></i>
+                    <div 
+                      class="display-todo table-cell" 
+                      ng-dblclick="editTodo(t)"
+                      ng-hide="t.editing">
+
+                      <p 
+                        class="display-content" 
+                        ng-class="{ 'no-date': !t.dueDate }" >{{ t.text }}</p> 
+                      <p 
+                        class="display-date" 
+                        ng-class="{ 'no-date': !t.dueDate }" >{{ t.dueDate }}</p>
+
+                    </div>
+                  
+
+                  <div 
+                    class="update-todo table-cell"
+                    ng-blur="stopEditTodo(t)"
+                    ng-show="t.editing">
+                    <input 
+                      class="update-content" 
+                      type="text" 
+                      ng-model='t.text' 
+                      ng-keydown="keyStopEditTodo($event, t)"> 
+                    <datepicker 
+                      date-min-limit=""
+                      date-format='MMM d, y'
+                      ng-class="{ 'calendar-above' : closerToTop($index) }">
+                      <input 
+                        placeholder="Due Date"
+                        class="update-date"
+                        ng-model="t.dueDate" 
+                        ng-keydown="keyStopEditTodo($event, t)"
+                        type="text"/>
+                    </datepicker>
+                    <button 
+                      class="update-save"
+                      ng-click="stopEditTodo(t)">Done</button>
+                  </div>
+
+                  <i class="fa fa-times-circle task-delete table-cell" 
+                      aria-hidden="true"
+                      ng-show="t.hovering"
+                      ng-click="deleteTodo(t)"></i>
+                </div>
+              </div>
+
+              <i 
+                class="fa fa-angle-double-down ng-hide scroll-indicator bottom" 
+                aria-hidden="true"
+                ng-show="distanceFromBottom !== 0"></i>
+
+            </div>
+          </div>
+
+          <div class="create-task">
+          <input 
+            type="text" 
+            placeholder="What next?" 
+            ng-model="newTodoText"
+            name="new-task"
+            ng-keydown="enterInput($event)"></input>
+          <i 
+            class="fa fa-plus task-adder" 
+            aria-hidden="true"
+            ng-click="createTodo()"></i>
+          </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- pokemonApp.directive('setClassWhenAtTop', function ($window) {
+    var $win = angular.element($window); // wrap window object as jQuery object
+    
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            
+            var topClass = attrs.setClassWhenAtTop, // get CSS class from directive's attribute value
+            offsetTop = $('nav.navbar').height();
+            
+            $win.on('scroll', function (e) {
+                if ($win.scrollTop() >= offsetTop) {
+                    element.addClass(topClass);
+                } else {
+                    element.removeClass(topClass);
+                }
+            });
+        }
+    };
+}); -->

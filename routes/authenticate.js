@@ -1,3 +1,6 @@
+// DELETE!
+return;
+
 var express = require('express');
 var router = express.Router();
 
@@ -15,14 +18,14 @@ module.exports = function(passport){
 
 	// Log in
 	router.post('/login', passport.authenticate('login', {
-		successRedirect: '/auth/success',
-		failureRedirect: '/auth/failure'
+		// successRedirect: '/auth/success',
+		// failureRedirect: '/auth/failure'
 	}));
 
 	// Sign up
 	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/auth/success',
-		failureRedirect: '/auth/failure'
+		// successRedirect: '/auth/success',
+		// failureRedirect: '/auth/failure'
 	}));
 
 	// Log out

@@ -17,8 +17,8 @@ passport.use('register', new LocalStrategy({
         // Make name available to strategy
         var name = req.body.name;
         // var email = req.body.email;
-        // var password = req.body.password;
-        // var password2 = req.body.password2;
+        var password = req.body.password;
+        var password2 = req.body.password2;
 
 
         User.findOne({ email: email }, function(err, user) {
@@ -28,12 +28,14 @@ passport.use('register', new LocalStrategy({
                 return done(err, false);
             }
             // User already exists
-            else if (user) {
-                return done('Email already taken', false);
+            if (user) {
+                return done(null, false, { message: 'Email already taken.' });
             }
 
             // Validate that passwords match
-            // req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+            if (password !== password2) {
+                return done(null, false, { message: 'Passwords do not match.' });
+            }
 
             // Create a new user
             var newUser = new User({
@@ -49,7 +51,7 @@ passport.use('register', new LocalStrategy({
                 }
 
                 console.log('Successfully registered ' +  email);
-                return done(null, user);
+                return done(null, newUser);
             });        
         });
     }));
@@ -65,21 +67,25 @@ passport.use('login', new LocalStrategy({
         passReqToCallback : true
     },
     function(req, email, password, done) {
+        console.log('asdjklfajsf')
 
         User.findOne({ email: email }, function(err, user) {
             // Database error
             if (err) {
+                console.log('DB ERROR')
                 return done(err, false);
             }
 
             // User not found
             else if (!user) {
-                return done('User not found.', false);
+                req.loginMessage = 'Incorrect password.'
+                return done(null, false, { message: 'User not found.' });
             }
 
             // Wrong password
             else if (!isValidPassword(user, password)) {
-                return done('Incorrect password.', false);
+                req.loginMessage = 'Incorrect password.'
+                return done(null, false, { message: 'Incorrect password. Please try again.' });
             }
 
             console.log('Successfully logged in as ' +  email);

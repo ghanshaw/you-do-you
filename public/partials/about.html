@@ -1,0 +1,25 @@
+<div 
+    class="about ng-hide"
+    ng-show="about.open">
+    <div class="about-background" ng-click="closeAbout($event)"></div>
+    <div class="about-modal">
+
+      <i 
+        class="fa fa-times exit" 
+        aria-hidden="true"
+        ng-click="closeAbout()"></i>
+
+      <h2 class="title">About</h2>
+
+      <h4><img src="images/logo-text-grey.png"> is a simple todo app that I built to practice my skills on the MEAN stack.
+      The app is built with <b>AngularJS</b> and <b>Bootstrap</b> on the frontend, and <b>Node</b>, <b>Express</b> and <b>Mongo</b> on the backend. I used <b>Passport</b> to implement the authentication.
+      </h4>
+
+      <h4>
+      The app has many of the standard todo featuers: you can add and remove tasks, assign due dates,
+      and view your status with a glance. The app is also fully responsive. It serves as a good starting point
+      for a more robust todo project sometime in the future.
+      </h4>
+      <img class="logo" src="images/logo-grey.png" />
+  </div>
+</div>

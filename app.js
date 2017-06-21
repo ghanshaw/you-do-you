@@ -26,6 +26,7 @@ var passport = require('passport');
 var api = require('./routes/api');
 var users = require('./routes/users')
 var index = require('./routes/index')
+var background = require('./routes/background')
 
 // var LocalStrategy = require('passport-local').Strategy;
 
@@ -34,6 +35,12 @@ var index = require('./routes/index')
 // ================================================= //
 
 var app = express();
+
+// // Seed data
+// var setupController = require('./controllers/setupController');
+
+// // Add endpoint to seed data
+// setupController(app);
 
 // ================================================= //
 // Set View Engine
@@ -49,6 +56,7 @@ app.set('view engine', 'handlebars');
 // ================================================= //
 
 // Set static folder
+// Automatically serves anything in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(favicon(__dirname + '/public/favicon.ico'));
 // app.use('/', static(__dirname + '/public'));
@@ -91,16 +99,16 @@ app.use(expressValidator({
 }));
 
 // Connect Flash
-app.use(flash());
+// app.use(flash());
 
 // Global variables
-app.use(function(req, res, next) {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    res.locals.user = req.user || null;
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.locals.success_msg = req.flash('success_msg');
+//     res.locals.error_msg = req.flash('error_msg');
+//     res.locals.error = req.flash('error');
+//     res.locals.user = req.user || null;
+//     next();
+// });
 
 
 
@@ -108,6 +116,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/api', api);
 app.use('/users', users);
+app.use('/background', background);
 
 
 // ================================================= //
@@ -210,6 +219,8 @@ var db = mongoose.connection;
 // // Seed data
 // var setupController = require('./controllers/setupController');
 
+
+
 // // Setup API
 // var apiController = require('./controllers/apiController');
 
@@ -219,8 +230,7 @@ var db = mongoose.connection;
 
 
 
-// // Add endpoint to seed data
-// setupController(app);
+
 
 // // Register API endpoints
 // apiController(app);

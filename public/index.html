@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app='ydyApp'>
+
+<head>
+  <title>YouDoYou</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- jQuery -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src='js/jquery-ui.js'></script>
+  
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Include Angular App -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+  <script src='js/angular-datepicker.js'></script>
+  <script src="ydyApp.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/jquery-ui.css" />
+  <link rel="stylesheet" href="css/angular-datepicker.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<body ng-controller='mainController' ng-class="{ 'window-scroll-off' : windowScroll.off }">
+  <div id="wrapper">
+
+    <!-- 
+            /* (GH) Extra extra small devices (portrait) (phones, less than 480px) */
+            
+            /* Extra small devices (phones, less than 768px) */
+
+            /* Small devices (tablets, 768px and up) */
+
+            /* Medium devices (desktops, 992px and up) */
+
+            /* Large devices (large desktops, 1200px and up) */
+        -->
+  <div class="breakpoints">
+    <div class="small"></div>
+    <div class="medium"></div>
+    <div class="large"></div>
+  </div>
+
+  <div class="background">
+    <div class="user-choice" ng-show="isLoggedIn() && !showDefault"></div>
+    <div class="default">
+      <video autoplay loop class="fillWidth">
+        <source src="videos/Keep_Running.mp4" type="video/mp4" /> Your browser does not support the video tag. I suggest you upgrade your browser.
+        <source src="videos/Keep_Running.webm" type="video/webm" /> Your browser does not support the video tag. I suggest you upgrade your browser.
+      </video>
+      <div class="poster hidden">
+        <img src="videos/Keep_Running.jpg" alt="">
+      </div>
+    </div>
+  </div>
+
+
+  <nav class="navbar">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button 
+          type="button" 
+          class="navbar-toggle collapsed" 
+          data-toggle="collapse" 
+          data-target="#bs-example-navbar-collapse-1" 
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img class="logo" src="images/logo-white.png" /> <img class="text" src="images/logo-text-white.png">
+          </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="" ng-click="openAbout()">About</a></li>
+          <li ng-show="isLoggedIn()"><a href="#/todos">Todos</a>
+          </li>
+          <li 
+            ng-show="isLoggedIn()"
+            ng-click="logout()"><a href="">Logout</a></li>
+          <li
+            ng-show="isLoggedIn()" 
+            ng-click="toggleBackgroundMenu()"><a><i class="fa fa-paint-brush" aria-hidden="true"></i></a></li>
+          <div 
+            ng-show="backgroundMenu.open"
+            class="user-select-background ng-hide"
+            ng-mouseleave="closeBackgroundMenu()">
+              <div class="thumb" ng-repeat="img in backgrounds">
+                <img ng-click="updateUserBackground($index)" src="{{ img.thumb }}">
+              </div>
+          </div>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <!--About Modal-->
+  <ng-include src="'partials/about.html'"></ng-include>
+
+  <!--App Views-->
+  <ng-view></ng-view>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+          
+          <div class="col-xs-12 col-sm-6 col-md-3"><p class="">&#169; 2017 Greer Hanshaw</p></div>
+          <div class="col-xs-12 col-sm-6 col-md-5"><p class="">Designed and Developed by <a target="_blank" href="http://www.greerhanshaw.com" class="name">  Greer Hanshaw</a></p></div>
+          <div class="col-xs-offset-3 col-xs-3 col-sm-offset-0 col-sm-6 col-md-2"><p class=""><a target="_blank" href="https://www.linkedin.com/in/greer-hanshaw">LinkedIn</a></p></div>
+              
+          <div class="col-xs-3 col-sm-6 col-md-2"><p class=""><a target="_blank" href="https://github.com/ghanshaw">Github</a></p></div>
+
+      </div>
+    </div>      
+  </footer>
+  </div>
+</body>
+
+</html>
+
+
+<!--   <canvas id='background'></canvas>
+      <div class="homepage-hero-module">
+         <div class="video-container">
+            <div class="filter"></div>
+            <video autoplay loop class="fillWidth">
+               <source src="videos/Keep_Running.mp4" type="video/mp4" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+               <source src="videos/Keep_Running.webm" type="video/webm" />
+               Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+               <img src="videos/Keep_Running.jpg" alt="">
+            </div> -->

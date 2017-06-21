@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Check for presence of global success/error messages -->
+        <div class="main-message">
+          <h1 class="">Do What You Want, Successfully</h1>
+          <h3>A Simple Todo App That Makes Your Goals Attainable</h3>
+        </div>
+        <div class="col-sm-offset-3 col-sm-6 col-lg-4 col-lg-offset-4">
+
+
+          <div class="authentication">
+            <div class="row toggle">
+              <div 
+                class="col-xs-6 pill log-in"
+                ng-click="toggleAuthentication('login')"
+                ng-class="{ 'active': authentication.login }">Log In</div>
+              <div 
+                class="col-xs-6 pill sign-up"
+                ng-click="toggleAuthentication('signup')"
+                ng-class="{ 'active': authentication.signup }">Sign Up</div>
+            </div>
+
+            <div 
+              class="error alert alert-danger"
+              ng-show=" hasError() ">
+              <div class="message">{{ getError() }}</div>
+            </div>
+
+            <div class="row authentication-form">
+              <!-- Signup Form -->
+              <form
+                name="signupform" 
+                class="form-signup" 
+                ng-show="authentication.signup"
+                ng-submit="register()">
+                <div class="form-group">
+                    <input type="text" ng-model="user.name" class="form-control" placeholder="Full Name" name="name">
+                </div>
+                <div class="form-group">
+                    <input type="email" ng-model="user.email" class="form-control" placeholder="Email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" ng-model="user.password" class="form-control" placeholder="Password" name="password">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" ng-model="user.password2" class="form-control" placeholder="Confirm password" name="password2">
+                </div>
+
+                <button type="submit" class="btn" >Submit</button>
+            </form>
+
+              <!-- Login Form -->
+              <form 
+                name="loginform" 
+                class="form-login"  
+                ng-show="authentication.login"
+                ng-submit="login()">
+                <div class="form-group">
+                  <input type="email" ng-model="user.email" class="form-control" placeholder="Email" name="email">
+                </div>
+                <div class="form-group">
+                  <input type="password" ng-model="user.password" class="form-control" placeholder="Password" name="password">
+                </div>
+                <button type="submit" class="btn">Submit</button>
+              </form>
+
+
+              <button 
+                type="submit" 
+                class="btn"
+                ng-click="guestLogin()">Guest Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

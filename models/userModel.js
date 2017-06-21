@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 var Schema = mongoose.Schema;
 
@@ -17,49 +18,109 @@ var userSchema = new Schema({
     created_at: { 
         type: Date, 
         default: Date.now 
+    },
+    settings: {
+        background: {
+            type: String,
+            default: 'default'
+        } 
     }
 })
 
+userSchema.methods.generateJwt = function() {
+
+    var expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+
+    return jwt.sign({
+        _id: this._id,
+        email: this.email,
+        name: this.name,
+        settings: this.settings,
+        exp: parseInt(expiry.getTime() / 1000),
+    }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+
+}
+
 var User = mongoose.model('User', userSchema);
 
-User.createUser = function(newUser, callback) {
+// ================================================= //
+// Restore Sample Data 
+// ================================================= //
 
-    // Hash password, taken from docs
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(newUser.password, salt, function (err, hash) {
-            newUser.password = hash;
-            newUser.save(callback);
-        });
-    });
-}
+User.restoreSampleData = function() {
 
-User.hasUser
+    var sampleUser = {
+        "_id": "5949c7b7f957694adcc50e1b",
+        "name": "Peter Parker",
+        "email": "peter.parker@email.com",
+        "settings": {
+            "background": "city"
+        }
+    }
 
-// Retrieve user with email
-User.getUserByEmail = function(email, callback) {
+    var id = sampleUser._id;
 
-    var query = { email: email };
-    
+    User.findById(id, function(err, user) {
 
-}
-
-// Confirm submitted password
-User.comparePassword = function (candidatePwd, hash, callback) {
-    
-    // Load hash from your password DB. 
-    bcrypt.compare(candidatePwd, hash, function (err, isMatch) {
         if (err) throw err;
-        // Expects err as first arg if it exists; isMatch is boolean
-        callback(null, isMatch);
-    });
-}
 
-// Retrieve user with id
-User.getUserById = function(id, callback) {
-    User.findById(id, callback);
+        // Restore background of sample user
+        user.settings.background = sampleUser.settings.background;
+
+        // Resave todo
+        user.save(function(err, todo) {
+            if (err) { throw err; }
+        })
+    });
 };
 
+
 module.exports = User
+
+
+
+// User.createUser = function(newUser, callback) {
+
+//     // Hash password, taken from docs
+//     bcrypt.genSalt(10, function (err, salt) {
+//         bcrypt.hash(newUser.password, salt, function (err, hash) {
+//             newUser.password = hash;
+//             newUser.save(callback);
+//         });
+//     });
+// }
+
+// User.hasUser
+
+// // Retrieve user with email
+// User.getUserByEmail = function(email, callback) {
+
+//     var query = { email: email };
+    
+
+// }
+
+// // Confirm submitted password
+// User.comparePassword = function (candidatePwd, hash, callback) {
+    
+//     // Load hash from your password DB. 
+//     bcrypt.compare(candidatePwd, hash, function (err, isMatch) {
+//         if (err) throw err;
+//         // Expects err as first arg if it exists; isMatch is boolean
+//         callback(null, isMatch);
+//     });
+// }
+
+// // Retrieve user with id
+// User.getUserById = function(id, callback) {
+//     User.findById(id, callback);
+// };
+
+
+// userSchema.methods.getBackgroundImage = function() {
+//     return backgroundImages[this.settings.backgroundImage]
+// }
 
 
 
