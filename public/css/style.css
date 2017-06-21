@@ -116,7 +116,7 @@ canvas {
   .background .user-choice {
     height: 100%;
     background: url("../images/backgrounds/space.jpg");
-    background-size: cover; }
+    background-size: cover !important; }
     .background .user-choice img {
       width: 100%;
       display: none; }

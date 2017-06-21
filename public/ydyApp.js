@@ -386,6 +386,8 @@ ydyApp.controller('authController', function($scope, $rootScope, $location, $htt
 
   $scope.toggleAuthentication = function(form) {
 
+    authentication.error.message = '';
+
     if (form === 'login') {
       $scope.authentication.login = true;
       $scope.authentication.signup = false;
