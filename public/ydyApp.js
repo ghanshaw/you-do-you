@@ -672,6 +672,7 @@ ydyApp.controller('todosController', function($scope, $location, $rootScope, $ht
   // Set hovering to false, end editing
   $scope.leaveTask = function(todo) {
     todo.hovering = false;
+    return;
     if (todo.editing) {
       todo.editing = false;
       $scope.updateTodo(todo);

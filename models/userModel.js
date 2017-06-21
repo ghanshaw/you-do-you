@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
+var config = require('../config');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+
 
 var Schema = mongoose.Schema;
 
@@ -29,6 +31,7 @@ var userSchema = new Schema({
 
 userSchema.methods.generateJwt = function() {
 
+    var jwtSecret = process.env.JWT_SECRET || config.getJwtSecret();
     var expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
 
@@ -38,7 +41,7 @@ userSchema.methods.generateJwt = function() {
         name: this.name,
         settings: this.settings,
         exp: parseInt(expiry.getTime() / 1000),
-    }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+    }, jwtSecret);
 
 }
 

@@ -7,6 +7,7 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var session = require('express-session');
+var favicon = require('serve-favicon');
 
 
 // Middleware
@@ -35,6 +36,8 @@ var background = require('./routes/background')
 
 var app = express();
 
+
+
 // // Seed data
 // var setupController = require('./controllers/setupController');
 
@@ -55,6 +58,9 @@ app.set('view engine', 'handlebars');
 // ================================================= //
 
 // Set static folder
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+console.log('serve it');
+
 // Automatically serves anything in the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -65,9 +71,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+
 // Express Sessions
+var expressSecret = process.env.EXPRESS_SECRET || config.getExpressSessionSecret();
 app.use(session({
-    secret: 'secret',
+    secret: expressSecret,
     saveUninitialized: true,
     resave: true
 }));
