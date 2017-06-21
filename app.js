@@ -19,7 +19,6 @@ var mongoose = require('mongoose');
 var config = require('./config');
 
 var path = require('path');
-var flash = require('connect-flash');
 var passport = require('passport');
 
 // Aquire routes
