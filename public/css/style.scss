@@ -127,10 +127,11 @@ body {
 		    /*top: 373px;*/
 		    left: initial;
 		    width: 100%;
+		}
 
-			.thum img {
-				width: 90px;
-			}
+		/*iPhone 5-ish Screens*/
+	    @media (max-width: 350px) {	 
+			.thumb img { width: 90px; }
 		}
 	}
 }
@@ -509,7 +510,8 @@ body {
 		    }
 
 		    &.no-date {
-		    	max-width: 96%
+		    	max-width: 96%;
+				width: 96%;
 		    }
 		
 	    }
@@ -530,6 +532,17 @@ body {
 		    }
 
 	    }
+
+		// Mobile Screens
+		@media (max-width: 450px) {
+			.display-date {
+				width: 40%;
+			}
+			
+			.display-content {
+				width: 58%;
+			}
+		}
 
     }
 
@@ -562,12 +575,18 @@ body {
 			float: none;
 
 			&.calendar-above {
-
+ 
 				._720kb-datepicker-calendar {
 					left: -190px;
 	    			bottom: -55px;
 	    			top: auto;
 	    		}
+			}
+
+
+			select {
+				background-color: $darkfont;
+				border: 1px solid white;
 			}
 			
 			._720kb-datepicker-calendar {
@@ -718,7 +737,9 @@ footer {
     align-items: center;
     line-height: 50px;
 
-    
+	@media (max-width: 350px) {	 
+		font-size: 11px;
+	}
     
     p {
     	color: $darkfont;
@@ -727,6 +748,10 @@ footer {
     	height: 50px;
     	color: #a5a5a5;
     	text-align: center;
+
+		&.name {
+			height: auto;
+		}
 
     	a.name {
     		display: inline;

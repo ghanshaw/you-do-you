@@ -68,7 +68,8 @@ canvas {
   top: 75px;
   left: -20px;
   width: 350px;
-  /*XS Screens*/ }
+  /*XS Screens*/
+  /*iPhone 5-ish Screens*/ }
   .navbar .user-select-background .thumb {
     float: left;
     margin: 5px 5px; }
@@ -79,9 +80,10 @@ canvas {
       position: fixed;
       /*top: 373px;*/
       left: initial;
-      width: 100%; }
-      .navbar .user-select-background .thum img {
-        width: 90px; } }
+      width: 100%; } }
+  @media (max-width: 350px) {
+    .navbar .user-select-background .thumb img {
+      width: 90px; } }
 
 .navbar {
   background-color: #635e5e;
@@ -333,7 +335,8 @@ canvas {
       .task .display-todo .display-content:focus {
         outline: none; }
       .task .display-todo .display-content.no-date {
-        max-width: 96%; }
+        max-width: 96%;
+        width: 96%; }
     .task .display-todo .display-date {
       display: inline-block;
       width: 28%;
@@ -345,6 +348,11 @@ canvas {
       vertical-align: middle; }
       .task .display-todo .display-date.no-date {
         display: none; }
+    @media (max-width: 450px) {
+      .task .display-todo .display-date {
+        width: 40%; }
+      .task .display-todo .display-content {
+        width: 58%; } }
   .task .update-todo {
     width: 100%; }
     .task .update-todo input.update-content {
@@ -371,6 +379,9 @@ canvas {
         left: -190px;
         bottom: -55px;
         top: auto; }
+      .task .update-todo datepicker select {
+        background-color: #635e5e;
+        border: 1px solid white; }
       .task .update-todo datepicker ._720kb-datepicker-calendar {
         left: -113px;
         top: 24px; }
@@ -465,6 +476,9 @@ footer {
   /*height: 50px;*/
   align-items: center;
   line-height: 50px; }
+  @media (max-width: 350px) {
+    footer {
+      font-size: 11px; } }
   footer p {
     color: #635e5e;
     margin: 0px;
@@ -472,6 +486,8 @@ footer {
     height: 50px;
     color: #a5a5a5;
     text-align: center; }
+    footer p.name {
+      height: auto; }
     footer p a.name {
       display: inline;
       /*margin-left: 5px;*/ }

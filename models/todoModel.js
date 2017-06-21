@@ -82,7 +82,7 @@ Todo.restoreSampleData = function() {
         }, function(err) {
             if (err) { throw err; }
 
-            // Readd sample todos 
+            // Read sample todos 
             for (t of sampleTodos) { 
 
                 (function() {

@@ -51,8 +51,8 @@
                     ng-show="t.isDone"
                     ng-click="toggleComplete(t)"></i>
                     <div 
-                      class="display-todo table-cell" 
-                      ng-dblclick="editTodo(t)"
+                      class="display-todo table-cell"
+                      mobile-dblclick="editTodo(t)"
                       ng-hide="t.editing">
 
                       <p 
@@ -75,7 +75,7 @@
                       ng-model='t.text' 
                       ng-keydown="keyStopEditTodo($event, t)"> 
                     <datepicker 
-                      date-min-limit=""
+                      datepicker-mobile="true"
                       date-format='MMM d, y'
                       ng-class="{ 'calendar-above' : closerToTop($index) }">
                       <input 

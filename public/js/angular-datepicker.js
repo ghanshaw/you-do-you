@@ -341,7 +341,7 @@
               var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
 
               if (attr.dateFormat) {
-
+                console.log('formatting date');
                 thisInput.val($filter('date')(modelDate, dateFormat));
               } else {
 
