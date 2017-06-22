@@ -10,7 +10,7 @@ ydyApp.directive('mobileDblclick',
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                element.bind('touchstart click', function (e) {
+                element.bind('touchstart', function (e) {
                     console.log('touching');
 
                     if (!waitingSecondClick) {
@@ -27,8 +27,10 @@ ydyApp.directive('mobileDblclick',
                         var time = (new Date()).getTime();
                         if (time - firstClickTime < DblClickInterval) {
                             scope.$apply(attrs.mobileDblclick);
-                        }
+                        } 
                     }
+
+                    console.log('Awaiting second click?: ' + waitingSecondClick);
                 });
             }
         };
