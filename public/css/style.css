@@ -92,30 +92,31 @@ input:focus {
     z-index: 400;
     position: relative;
     overflow-y: visible; }
-  .navbar .user-select-background {
-    position: absolute;
-    z-index: 400;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.89);
-    top: 75px;
-    left: -20px;
-    width: 350px;
-    /*XS Screens*/
-    /*iPhone 5-ish Screens*/ }
-    .navbar .user-select-background .thumb {
-      float: left;
-      margin: 5px 5px; }
-      .navbar .user-select-background .thumb img {
-        /*display: inline;*/ }
-    @media (max-width: 768px) {
-      .navbar .user-select-background {
-        position: fixed;
-        /*top: 373px;*/
-        left: initial;
-        width: 100%; } }
-    @media (max-width: 350px) {
-      .navbar .user-select-background .thumb img {
-        width: 90px; } }
+
+.background-menu {
+  position: absolute;
+  z-index: 400;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.89);
+  top: 80px;
+  right: 50px;
+  width: 350px;
+  /*XS Screens*/
+  /*iPhone 5-ish Screens*/ }
+  .background-menu .thumb {
+    float: left;
+    margin: 5px 5px; }
+    .background-menu .thumb img {
+      /*display: inline;*/ }
+  @media (max-width: 768px) {
+    .background-menu {
+      /*top: 373px;*/
+      width: 100%;
+      top: 310px;
+      right: 0px; } }
+  @media (max-width: 350px) {
+    .background-menu .thumb img {
+      width: 90px; } }
 
 .about {
   width: 100%;

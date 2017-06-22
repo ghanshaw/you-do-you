@@ -168,37 +168,38 @@ body {
 		position: relative;
 		overflow-y: visible;
 	}
+}
 
-	.user-select-background {
-	    position: absolute;
-	    z-index: 400;
-	    padding: 10px;
-	    background: rgba(255, 255, 255, 0.89);
-	    top: 75px;
-	    left: -20px;
-	    width: 350px;
-		
-		.thumb {
-			float: left;
-	    	margin: 5px 5px;
+.background-menu {
+	position: absolute;
+	z-index: 400;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.89);
+	top: 80px;
+	right: 50px;
+	width: 350px;
+	
+	.thumb {
+		float: left;
+		margin: 5px 5px;
 
-	    	img {
-	    		/*display: inline;*/
-	    	}
+		img {
+			/*display: inline;*/
 		}
+	}
 
-		/*XS Screens*/
-	    @media (max-width: 768px) {	  
-			position: fixed;
-		    /*top: 373px;*/
-		    left: initial;
-		    width: 100%;
-		}
+	/*XS Screens*/
+	@media (max-width: 768px) {	  
+		// position: fixed;
+		/*top: 373px;*/
+		width: 100%;
+		top: 310px;
+		right: 0px;
+	}
 
-		/*iPhone 5-ish Screens*/
-	    @media (max-width: 350px) {	 
-			.thumb img { width: 90px; }
-		}
+	/*iPhone 5-ish Screens*/
+	@media (max-width: 350px) {	 
+		.thumb img { width: 90px; }
 	}
 }
 

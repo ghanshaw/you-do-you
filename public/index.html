@@ -104,20 +104,22 @@
           <li
             ng-show="isLoggedIn()" 
             ng-click="toggleBackgroundMenu()"><a><i class="fa fa-paint-brush" aria-hidden="true"></i></a></li>
-          <div 
-            ng-show="backgroundMenu.open"
-            class="user-select-background ng-hide"
-            ng-mouseleave="closeBackgroundMenu()">
-              <div class="thumb" ng-repeat="img in backgrounds">
-                <img ng-click="updateUserBackground($index)" ng-src="{{ img.thumb }}">
-              </div>
-          </div>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
   </nav>
+
+  <!--Background Menu-->
+  <div 
+    ng-show="backgroundMenu.open"
+    class="background-menu ng-hide"
+    ng-mouseleave="closeBackgroundMenu()">
+      <div class="thumb" ng-repeat="img in backgrounds">
+        <img ng-click="updateUserBackground($index)" ng-src="{{ img.thumb }}">
+      </div>
+  </div>
 
   <!--About Modal-->
   <ng-include src="'partials/about.html'"></ng-include>
