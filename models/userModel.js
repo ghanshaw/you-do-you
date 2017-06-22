@@ -68,7 +68,7 @@ User.restoreSampleData = function() {
 
     // Details of sample user
     var sampleUser = {
-        "_id": "5949c7b7f957694adcc50e1b",
+        "_id": "594b3f45099d1920bc2d685f",
         "name": "Peter Parker",
         "email": "peter.parker@email.com",
         "settings": {

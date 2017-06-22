@@ -36,7 +36,7 @@ var Todo = mongoose.model('Todo', todoSchema);
 // Sample todos
 var sampleTodos = [
         {
-            "user_id": "5949c7b7f957694adcc50e1b",
+            "user_id": "594b3f45099d1920bc2d685f",
             "email": "peter.parker@email.com",
             "text": "Websling around New York",
             "dueDate": "",
@@ -46,7 +46,7 @@ var sampleTodos = [
             "isDone": false,
         },
         {
-            "user_id": "5949c7b7f957694adcc50e1b",
+            "user_id": "594b3f45099d1920bc2d685f",
             "email": "peter.parker@email.com",
             "text": "Take pictures for Daily Bugle",
             "dueDate": "Jul 13, 2017",
@@ -56,7 +56,7 @@ var sampleTodos = [
             "isDone": true,
         },
         {
-            "user_id": "5949c7b7f957694adcc50e1b",
+            "user_id": "594b3f45099d1920bc2d685f",
             "email": "peter.parker@email.com",
             "text": "Visit Mary Jane",
             "dueDate": "",
@@ -66,7 +66,7 @@ var sampleTodos = [
             "isDone": true, 
         },
         {
-            "user_id": "5949c7b7f957694adcc50e1b",
+            "user_id": "594b3f45099d1920bc2d685f",
             "email": "peter.parker@email.com",
             "text": "Defeat Dr. Octopus",
             "dueDate": "Nov 11, 2017",
