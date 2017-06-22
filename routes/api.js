@@ -142,7 +142,6 @@ router.route('/user/:user_id/todos')
 
     // Return all todos belonging to one person
     .get(function(req, res) {
-        console.log('Getting todo by user id');
  
         Todo.find({ user_id: req.params.user_id }, function(err, todo) {
             if (err) {

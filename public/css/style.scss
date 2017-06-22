@@ -13,6 +13,10 @@ html, body {
 	width: 100%;
 }
 
+html {
+	background-color: $darkfont;
+}
+
 h1, h2, h3, h4, h5, h6, p, li, a, input, button, div {
 	font-family: 'Poppins', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
@@ -674,6 +678,9 @@ body {
 	    font-size: 3rem;
 	    border-bottom: 4px solid white;
 	    padding-left: 20px;
+		border-radius: 0px;
+		position: relative;
+		z-index: 100;
 	}
 
 	input::placeholder {
@@ -683,10 +690,11 @@ body {
 
 	.task-adder {
 		position: absolute;
-	    top: 36%;
-	    right: 3%;
-	    font-size: 2rem;
-
+		top: 7%;
+		right: 0%;
+		font-size: 2rem;
+		z-index: 110;
+		padding: 20px;
 	}
 }
 
