@@ -144,6 +144,11 @@ body {
 
 	}
 
+	.navbar-header {
+		position: relative;
+    	z-index: 410;
+	}
+
 	.navbar-toggle {
 		border: 2px solid white;
 		margin: 13px;
