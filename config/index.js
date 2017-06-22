@@ -10,7 +10,7 @@ try {
 
     // Add methods to config object, if file is available
     configObj.getDbConnectionString = function() {
-        return "mongodb://" + configValues.uname + ":" + configValues.pwd + "@ds123722.mlab.com:23722/node-youdoyou";
+        return "mongodb://" + configValues.uname + ":" + configValues.pwd + configValues.mongo_url;
     };
 
     configObj.getExpressSessionSecret = function() {

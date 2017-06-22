@@ -85,7 +85,6 @@ router.route('/todos/:id')
 
     // Return a particular post
     .get(function(req, res) {
-        console.log('Getting todo by id');
  
         Todo.findById(req.params.id, function(err, todo) {
             if (err) {
@@ -306,5 +305,5 @@ router.route('/user/:user_id')
         })
     })
 
-    
+
 module.exports = router;
