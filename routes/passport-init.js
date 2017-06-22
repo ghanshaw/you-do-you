@@ -2,10 +2,18 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 var User = require('../models/userModel');
-// var Todo = require('../models/todoModel');
 
-// var users =  {};
+// ================================================= //
+// Passport Authentication
+// ================================================= //
 
+/*
+* Functions serach for email and validate passwords.
+* Done is a method called interally by the strategy 
+* After authentication, returns to router for additional proccessing
+*/
+
+// Create registration Local Strategy
 passport.use('register', new LocalStrategy({ 
         usernameField : 'email',
         passwordField : 'password',
@@ -14,13 +22,11 @@ passport.use('register', new LocalStrategy({
 
     function(req, email, password, done) {
 
-        // Make name available to strategy
+        // Make name and password2 available to strategy
         var name = req.body.name;
-        // var email = req.body.email;
-        var password = req.body.password;
         var password2 = req.body.password2;
 
-
+        // Search DB for user
         User.findOne({ email: email }, function(err, user) {
 
             // Database error
@@ -45,7 +51,7 @@ passport.use('register', new LocalStrategy({
             });
 
             // Save user
-            newUser.save(function(err) {
+            newUser.save(function callback(err) {
                 if (err) {
                     return done(err, false);
                 }
@@ -57,9 +63,7 @@ passport.use('register', new LocalStrategy({
     }));
 
 
-// Searches for email and validates password
-// --> done is a method called interally by the strategy 
-// redirects to other success/failure event handlers
+// Create login Local Strategy
 passport.use('login', new LocalStrategy({  
         // By default, local strategy uses username and password, override with email
         usernameField : 'email',
@@ -67,24 +71,23 @@ passport.use('login', new LocalStrategy({
         passReqToCallback : true
     },
     function(req, email, password, done) {
-        console.log('asdjklfajsf')
 
+        // Search DB for user
         User.findOne({ email: email }, function(err, user) {
+
             // Database error
             if (err) {
-                console.log('DB ERROR')
+                console.log ('Database error during login. ' + err);
                 return done(err, false);
             }
 
             // User not found
             else if (!user) {
-                req.loginMessage = 'Incorrect password.'
                 return done(null, false, { message: 'User not found.' });
             }
 
             // Wrong password
             else if (!isValidPassword(user, password)) {
-                req.loginMessage = 'Incorrect password.'
                 return done(null, false, { message: 'Incorrect password. Please try again.' });
             }
 
@@ -108,6 +111,7 @@ passport.deserializeUser(function(id, done) {
 
     User.findById(id, function(err, user) {
         if (err) {
+            console.log ('Database error during deserialization. ' + err);
             return done(err, false);
         }
         else if (!user) {
@@ -117,8 +121,6 @@ passport.deserializeUser(function(id, done) {
             return done(null, user);
         }
     });
-
-    
 });
 
 // Generates hash using bCrypt
@@ -132,80 +134,3 @@ var isValidPassword = function(user, password){
 };
 
 module.exports = passport;
-
-
-
-
-
-    // // Validation
-    // req.checkBody('name', 'Name is required').notEmpty();
-    // req.checkBody('email', 'Email is required').notEmpty();
-    // req.checkBody('email', 'Email is not valid').isEmail();
-    // req.checkBody('username', 'Username is required').notEmpty();
-    // req.checkBody('password', 'Password is required').notEmpty();
-    // req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-
-    // var errors = req.validationErrors();
-    // console.log(errors)
-
-    // if (errors) {
-    //     // Rerender form, and pass along errors
-    //     res.render('layouts/register', {
-    //         errors: errors
-    //     });
-    // } else {
-
-        
-
-    //     // After instantiating a user, run this to hash password
-    //     User.createUser(newUser, function (err, user) {
-    //         if (err) throw err;
-    //         console.log(newUser);
-    //     });
-
-    //     req.flash('success_msg', 'You are registered and can now log in');
-    //     res.redirect('/users/login');
-    // }
-
-
-
-
-
-
-
-
-    //         return done('we have not implemented this', false);
-
-    //     })
-    // );
-
-
-        // // Method on User model, created by developer (not built-in)
-        // User.getUserByUsername(username, function(err, user) {
-            
-
-        //     // Check if user exists
-        //     if (!user) {
-        //        return done(null, false, { message: 'User not found.' });
-        //     }
-
-        //     // Check password
-        //     // Method on User model, created by developer (not built-in)
-        //     if (!User.comparePassword(password, user.password, function(err, isMatch) {
-        //         if (err) throw err;
-
-        //         // Login successful
-        //         if (isMatch) {
-        //             return done(null, user);
-        //         } 
-        //         // Login unsuccessful
-        //         else {
-        //             return done(null, false, { message: 'Incorrect password.'});
-        //         }
-        //    }));
-        // });
-
-// // Method on User model, created by developer (not built-in)
-//     User.getUserById(id, function(err, user) {
-//         done(err, user);
-//     });

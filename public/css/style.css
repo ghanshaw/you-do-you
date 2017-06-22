@@ -11,15 +11,6 @@ h1, h2, h3, h4, h5, h6, p, li, a, input, button, div {
 input:focus {
   outline: none; }
 
-canvas {
-  /*	width: 100%;
-  	height: 100%;*/
-  /*background-color: #eee;*/
-  /*background-color: slategrey;*/
-  position: absolute;
-  z-index: -1000;
-  display: none; }
-
 @media (min-width: 991px) {
   body.window-scroll-off {
     overflow: hidden; } }
@@ -32,58 +23,19 @@ canvas {
     #wrapper {
       padding-bottom: 200px; } }
 
-.navbar div.navbar-collapse {
-  padding: 0px; }
-.navbar ul.nav {
-  position: relative;
-  background-color: #635e5e;
-  z-index: 400;
-  margin: 0;
-  padding-top: 0px;
-  padding: 0px; }
-  .navbar ul.nav li > a:hover, .navbar ul.nav li > a:focus {
-    background-color: transparent;
-    border-bottom: 4px solid white;
-    height: 70px;
-    /* XS Screens */ }
-    @media (max-width: 768px) {
-      .navbar ul.nav li > a:hover, .navbar ul.nav li > a:focus {
-        height: auto;
-        border: none;
-        background-color: rgba(0, 0, 0, 0.19); } }
-.navbar .navbar-toggle {
-  border: 2px solid white;
-  margin: 13px; }
-.navbar .navbar-toggle .icon-bar {
-  background-color: white; }
-.navbar .navbar-collapse {
-  z-index: 400;
-  position: relative;
-  overflow-y: visible; }
-.navbar .user-select-background {
-  position: absolute;
-  z-index: 400;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.89);
-  top: 75px;
-  left: -20px;
-  width: 350px;
-  /*XS Screens*/
-  /*iPhone 5-ish Screens*/ }
-  .navbar .user-select-background .thumb {
-    float: left;
-    margin: 5px 5px; }
-    .navbar .user-select-background .thumb img {
-      /*display: inline;*/ }
-  @media (max-width: 768px) {
-    .navbar .user-select-background {
-      position: fixed;
-      /*top: 373px;*/
-      left: initial;
-      width: 100%; } }
-  @media (max-width: 350px) {
-    .navbar .user-select-background .thumb img {
-      width: 90px; } }
+.background {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: -1000; }
+  .background .user-choice {
+    height: 100%;
+    background: url("../images/backgrounds/space.jpg");
+    background-size: cover !important; }
+    .background .user-choice img {
+      width: 100%;
+      display: none; }
 
 .navbar {
   background-color: #635e5e;
@@ -106,20 +58,58 @@ canvas {
   .navbar li a {
     color: white;
     font-weight: 900; }
-
-.background {
-  position: fixed;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  z-index: -1000; }
-  .background .user-choice {
-    height: 100%;
-    background: url("../images/backgrounds/space.jpg");
-    background-size: cover !important; }
-    .background .user-choice img {
-      width: 100%;
-      display: none; }
+  .navbar div.navbar-collapse {
+    padding: 0px; }
+  .navbar ul.nav {
+    position: relative;
+    background-color: #635e5e;
+    z-index: 400;
+    margin: 0;
+    padding-top: 0px;
+    padding: 0px; }
+    .navbar ul.nav li > a:hover, .navbar ul.nav li > a:focus {
+      background-color: transparent;
+      border-bottom: 4px solid white;
+      height: 70px;
+      /* XS Screens */ }
+      @media (max-width: 768px) {
+        .navbar ul.nav li > a:hover, .navbar ul.nav li > a:focus {
+          height: auto;
+          border: none;
+          background-color: rgba(0, 0, 0, 0.19); } }
+  .navbar .navbar-toggle {
+    border: 2px solid white;
+    margin: 13px; }
+  .navbar .navbar-toggle .icon-bar {
+    background-color: white; }
+  .navbar .navbar-collapse {
+    z-index: 400;
+    position: relative;
+    overflow-y: visible; }
+  .navbar .user-select-background {
+    position: absolute;
+    z-index: 400;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.89);
+    top: 75px;
+    left: -20px;
+    width: 350px;
+    /*XS Screens*/
+    /*iPhone 5-ish Screens*/ }
+    .navbar .user-select-background .thumb {
+      float: left;
+      margin: 5px 5px; }
+      .navbar .user-select-background .thumb img {
+        /*display: inline;*/ }
+    @media (max-width: 768px) {
+      .navbar .user-select-background {
+        position: fixed;
+        /*top: 373px;*/
+        left: initial;
+        width: 100%; } }
+    @media (max-width: 350px) {
+      .navbar .user-select-background .thumb img {
+        width: 90px; } }
 
 .about {
   width: 100%;
@@ -159,6 +149,8 @@ canvas {
       position: absolute;
       right: 30px;
       top: 30px; }
+    .about .about-modal .logo-text {
+      height: 24px; }
     .about .about-modal .logo {
       width: 70px;
       text-align: center;
@@ -190,12 +182,6 @@ canvas {
         font-size: 2rem;
         text-align: left;
         margin-top: 20px; } }
-
-.login.wrapper {
-  background-color: rgba(0, 188, 212, 0.78);
-  padding: 50px;
-  margin-top: 130px;
-  color: white; }
 
 .authentication {
   border: 4px solid white;
@@ -265,13 +251,11 @@ canvas {
   margin-top: 30px; }
 
 .list-task {
-  max-height: 500px;
   overflow: hidden;
   position: relative; }
   .list-task .window {
     overflow-y: scroll;
-    height: 100%;
-    max-height: 500px;
+    max-height: 50vh;
     padding-right: 17px;
     width: 100%;
     box-sizing: content-box; }
@@ -523,47 +507,5 @@ footer {
     .breakpoints div.large {
       background-color: rebeccapurple;
       left: 1200px; }
-
-/*.homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
-}
-.no-video .video-container video,
-.touch .video-container video {
-    display: none;
-}
-.no-video .video-container .poster,
-.touch .video-container .poster {
-    display: block !important;
-}
-.video-container {
-    position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: #000;
-}
-.video-container .poster img {
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-}
-.video-container .filter {
-    z-index: 100;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.4);
-    width: 100%;
-}
-.video-container video {
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-}
-.video-container video.fillWidth {
-    width: 100%;
-}*/
 
 /*# sourceMappingURL=style.css.map */

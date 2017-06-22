@@ -1,3 +1,7 @@
+// ================================================= //
+// General
+// ================================================= //
+
 $darkfont: #635e5e;
 $transwhite: rgba(255, 255, 255, 0.75);
 $transgrey: rgba(175, 175, 175, 0.70);
@@ -9,7 +13,6 @@ html, body {
 	width: 100%;
 }
 
-
 h1, h2, h3, h4, h5, h6, p, li, a, input, button, div {
 	font-family: 'Poppins', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
@@ -20,15 +23,6 @@ input:focus {
 	outline: none;
 }
 
-canvas {
-/*	width: 100%;
-	height: 100%;*/
-	/*background-color: #eee;*/
-	/*background-color: slategrey;*/
-	position: absolute;
-	z-index: -1000;
-	display: none;
-}
 
 body {
 	&.window-scroll-off {
@@ -39,6 +33,10 @@ body {
 		}
 	}
 }
+
+// ================================================= //
+// Page/Background
+// ================================================= //
 
 #wrapper {
 	min-height: 100%;
@@ -52,7 +50,68 @@ body {
 }
 
 
+.background {
+	position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+
+    .user-choice {
+    	height: 100%;
+	    background: url('../images/backgrounds/space.jpg');
+	    background-size: cover !important;
+
+    	img {
+    		width: 100%;
+    		display: none;
+    	}
+    }
+}
+
+// ================================================= //
+// Navbar
+// ================================================= //
+
+
 .navbar {
+
+	background-color: #635e5e;
+	border-radius: 0px;
+    border: none;
+    height: 70px;
+    margin-bottom: 0px;
+
+    .navbar-nav>li>a {
+    	line-height: 40px;
+    	text-align: center;
+    }
+
+    a.navbar-brand {
+		color: white;
+			
+		img {
+
+			&.logo {
+			width: 50px;
+		    display: inline;
+			}
+		
+
+    		&.text {
+    			height: 25px;
+			    display: inline;
+			    margin-left: 10px;
+    		}
+    	}
+    }
+
+	li {
+		a {
+			color: white;
+			font-weight: 900;
+		}
+	}
 
 	div.navbar-collapse {
 		padding: 0px;
@@ -101,8 +160,6 @@ body {
 		overflow-y: visible;
 	}
 
-
-
 	.user-select-background {
 	    position: absolute;
 	    z-index: 400;
@@ -136,64 +193,10 @@ body {
 	}
 }
 
-.navbar {
-	background-color: #635e5e;
-	border-radius: 0px;
-    border: none;
-    height: 70px;
-    margin-bottom: 0px;
+// ================================================= //
+// About modal
+// ================================================= //
 
-    .navbar-nav>li>a {
-    	line-height: 40px;
-    	text-align: center;
-    }
-
-    a.navbar-brand {
-		color: white;
-			
-		img {
-
-			&.logo {
-			width: 50px;
-		    display: inline;
-			}
-		
-
-    		&.text {
-    			height: 25px;
-			    display: inline;
-			    margin-left: 10px;
-    		}
-    	}
-    }
-
-	li {
-		a {
-			color: white;
-			font-weight: 900;
-		}
-	}
-}
-
-
-.background {
-	position: fixed;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    z-index: -1000;
-
-    .user-choice {
-    	height: 100%;
-	    background: url('../images/backgrounds/space.jpg');
-	    background-size: cover !important;
-
-    	img {
-    		width: 100%;
-    		display: none;
-    	}
-    }
-}
 
 .about {
 	width: 100%;
@@ -206,8 +209,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-
 
     &.closed {
     	/*display: none;*/
@@ -247,6 +248,10 @@ body {
 		    top: 30px;
 
 	    }
+		
+		.logo-text {
+			height: 24px;
+		}
 
 	    .logo {
 	    	width: 70px;
@@ -258,6 +263,10 @@ body {
 	    }
 	}
 }
+
+// ================================================= //
+// Auth Page
+// ================================================= //
 
 
 .main-message {
@@ -297,13 +306,6 @@ body {
 	}
 }
 
-
-.login.wrapper {
-	background-color: rgba(0, 188, 212, 0.78);;
-	padding: 50px;
-	margin-top: 130px;
-	color: white;
-}
 
 .authentication {
 	
@@ -406,20 +408,23 @@ body {
 	}
 }
 
+
+// ================================================= //
+// Todos Page
+// ================================================= //
+
 .todos {
 	margin-top: 30px;
 }
 
 .list-task {
 
-	max-height: 500px;
     overflow: hidden;
     position: relative;
 
     .window {
     	overflow-y: scroll;
-	    height: 100%;
-	    max-height: 500px;
+		max-height: 50vh;
 	    padding-right: 17px;
 	    width: 100%;
 	    box-sizing: content-box;
@@ -447,8 +452,6 @@ body {
 	    }
 	}
 }
-
-
 
 
 .task {
@@ -728,6 +731,11 @@ body {
 }
 
 
+// ================================================= //
+// Footer
+// ================================================= //
+
+
 footer {
 	position: absolute;
     bottom: 0px;
@@ -778,6 +786,10 @@ footer {
 }
 
 
+// ================================================= //
+// Breakpoints (for design purposes)
+// ================================================= //
+
 
 .breakpoints {
     position: fixed;
@@ -807,50 +819,4 @@ footer {
 		}
 	}
 }
-
-
-
-
-/*.homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
-}
-.no-video .video-container video,
-.touch .video-container video {
-    display: none;
-}
-.no-video .video-container .poster,
-.touch .video-container .poster {
-    display: block !important;
-}
-.video-container {
-    position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: #000;
-}
-.video-container .poster img {
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-}
-.video-container .filter {
-    z-index: 100;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.4);
-    width: 100%;
-}
-.video-container video {
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-}
-.video-container video.fillWidth {
-    width: 100%;
-}*/
-
 

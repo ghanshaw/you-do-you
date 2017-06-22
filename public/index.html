@@ -6,17 +6,18 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!--<link href="/favicon.ico" rel="icon" type="image/x-icon" />-->
 
   <!-- jQuery -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-  <script src='js/jquery-ui.js'></script>
   
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <!-- Include Angular App -->
+  
+  <!-- Angular -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
@@ -24,15 +25,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-
   
-  <script src='js/angular-datepicker.js'></script>
   <script src="ydyApp.js"></script>
+  <script src='directives/angular-datepicker.js'></script>
   <script src='directives/directives.js'></script>
+  <script src='services/services.js'></script>
+  <script src='controllers/authController.js'></script>
+  <script src='controllers/mainController.js'></script>
+  <script src='controllers/todosController.js'></script>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
-  <!--<link rel="stylesheet" href="css/jquery-ui.css" />-->
   <link rel="stylesheet" href="css/angular-datepicker.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
@@ -41,17 +44,12 @@
 <body ng-controller='mainController' ng-class="{ 'window-scroll-off' : windowScroll.off }">
   <div id="wrapper">
 
-    <!-- 
-            /* (GH) Extra extra small devices (portrait) (phones, less than 480px) */
-            
-            /* Extra small devices (phones, less than 768px) */
+    <!--/* (GH) Extra extra small devices (portrait) (phones, less than 480px) */
+    /* Extra small devices (phones, less than 768px) */
+    /* Small devices (tablets, 768px and up) */
+    /* Medium devices (desktops, 992px and up) */
+    /* Large devices (large desktops, 1200px and up) */-->
 
-            /* Small devices (tablets, 768px and up) */
-
-            /* Medium devices (desktops, 992px and up) */
-
-            /* Large devices (large desktops, 1200px and up) */
-        -->
   <div class="breakpoints">
     <div class="small"></div>
     <div class="medium"></div>
@@ -88,7 +86,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img class="logo" src="images/logo-white.png" /> <img class="text" src="images/logo-text-white.png">
+          <img class="logo" src="images/logo/logo-white.svg" /> <img class="text" src="images/logo/logo-text-white.svg">
           </a>
       </div>
 
@@ -111,7 +109,7 @@
             class="user-select-background ng-hide"
             ng-mouseleave="closeBackgroundMenu()">
               <div class="thumb" ng-repeat="img in backgrounds">
-                <img ng-click="updateUserBackground($index)" src="{{ img.thumb }}">
+                <img ng-click="updateUserBackground($index)" ng-src="{{ img.thumb }}">
               </div>
           </div>
         </ul>
@@ -134,7 +132,6 @@
           <div class="col-xs-12 col-sm-6 col-md-3"><p class="">&#169; 2017 Greer Hanshaw</p></div>
           <div class="col-xs-12 col-sm-6 col-md-5"><p class="name">Designed and Developed by <a target="_blank" href="http://www.greerhanshaw.com" class="name">  Greer Hanshaw</a></p></div>
           <div class="col-xs-offset-3 col-xs-3 col-sm-offset-0 col-sm-6 col-md-2"><p class=""><a target="_blank" href="https://www.linkedin.com/in/greer-hanshaw">LinkedIn</a></p></div>
-              
           <div class="col-xs-3 col-sm-6 col-md-2"><p class=""><a target="_blank" href="https://github.com/ghanshaw">Github</a></p></div>
 
       </div>
@@ -144,18 +141,3 @@
 </body>
 
 </html>
-
-
-<!--   <canvas id='background'></canvas>
-      <div class="homepage-hero-module">
-         <div class="video-container">
-            <div class="filter"></div>
-            <video autoplay loop class="fillWidth">
-               <source src="videos/Keep_Running.mp4" type="video/mp4" />
-               Your browser does not support the video tag. I suggest you upgrade your browser.
-               <source src="videos/Keep_Running.webm" type="video/webm" />
-               Your browser does not support the video tag. I suggest you upgrade your browser.
-            </video>
-            <div class="poster hidden">
-               <img src="videos/Keep_Running.jpg" alt="">
-            </div> -->

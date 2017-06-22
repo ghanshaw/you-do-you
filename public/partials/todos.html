@@ -32,7 +32,7 @@
               <i 
                 class="fa fa-angle-double-up scroll-indicator top" 
                 aria-hidden="true"
-                ng-show="distanceFromTop !== 0"></i>
+                ng-show="getDistanceFromTop() !== 0"></i>
 
 
               <div ng-repeat="t in todos | orderBy: '-created_at' track by t._id ">
@@ -100,7 +100,7 @@
               <i 
                 class="fa fa-angle-double-down ng-hide scroll-indicator bottom" 
                 aria-hidden="true"
-                ng-show="distanceFromBottom !== 0"></i>
+                ng-show="getDistanceFromBottom() !== 0"></i>
 
             </div>
           </div>

@@ -1,11 +1,19 @@
+// ================================================= //
+// Todos and User API
+// ================================================= //
+
 var express = require('express');
 var router = express.Router();
 var Todo = require('../models/todoModel');
 var User = require('../models/userModel');
-var Background = require('../models/backgroundModel');
 
 
-// // Custom middleware
+// ================================================= //
+// Custom Authentication Middleware
+// ================================================= //
+
+
+// Custom middleware -- Stop user if not authenticated
 router.use('/todos', function(req, res, next) {
 
     // User is authenticated, redirect to login page
@@ -13,16 +21,17 @@ router.use('/todos', function(req, res, next) {
         console.log('user not authenticated')   
         res.status(401);
         return res.json({ message: 'User not authenticated.'});
-        return res.redirect('/'); 
-        // return res.redirect('/#login');
     }
     // User is authenticated
     else {
         return next();
     }
-
 });
 
+
+// ================================================= //
+// /todos -- All todos
+// ================================================= //
 
 // Get all todos, create new todo
 router.route('/todos')
@@ -42,6 +51,7 @@ router.route('/todos')
 
     // Create a todo
     .post(function(req, res) {
+
         // Get todo details from req object
         var text = req.body.text;
         var created_at = req.body.created_at;
@@ -66,6 +76,9 @@ router.route('/todos')
     });
 
 
+// ================================================= //
+// /todos/:id -- Get todo by id
+// ================================================= //
 
 // CRUD todos by id
 router.route('/todos/:id') 
@@ -82,7 +95,6 @@ router.route('/todos/:id')
                 res.json(todo)
             }
         })
-
     })
 
     // Update existing todo
@@ -121,6 +133,11 @@ router.route('/todos/:id')
     });
 
 
+// ================================================= //
+// /user/:user_id/todos -- Get todos by user
+// ================================================= //
+
+
 // Get all todos belonging to specific user
 router.route('/user/:user_id/todos')
 
@@ -140,6 +157,7 @@ router.route('/user/:user_id/todos')
 
     // Create a new todo for a given user
     .post(function(req, res) {
+
         // Get todo details from req object
         var text = req.body.text;
         var created_at = req.body.created_at;
@@ -165,6 +183,7 @@ router.route('/user/:user_id/todos')
 
     // Delete all todos belonging to a given user
     .delete(function(req, res) {
+
         // Get todo details from req object
         var text = req.body.text;
         var created_at = req.body.created_at;
@@ -189,15 +208,15 @@ router.route('/user/:user_id/todos')
     })
 
 
-
+// ================================================= //
+// /user/:user_id/todos/:todo_id -- Get specific todos by user
+// ================================================= //
 
 // CRUD individual todo belonging to specific user
 router.route('/user/:user_id/todos/:todo_id')
 
     // Return all todos belonging to one person
     .get(function(req, res) {
-
-        console.log('Getting todo by user id');
  
         Todo.find({ 
             user_id: req.params.user_id,
@@ -212,7 +231,6 @@ router.route('/user/:user_id/todos/:todo_id')
         })
     })
 
-
     // Update existing todo
     .put(function(req, res) {
 
@@ -223,8 +241,6 @@ router.route('/user/:user_id/todos/:todo_id')
             if (err) {
                 res.send(500, err);
             }
-
-            // console.log(todo);
 
             // Update todo data
             todo[0].text = req.body.text;
@@ -255,13 +271,16 @@ router.route('/user/:user_id/todos/:todo_id')
         }); 
     });
 
+// ================================================= //
+// /user/:user_id/ -- Update User
+// ================================================= //
+
     
-// Get all todos belonging to specific user
+// Update specific user
 router.route('/user/:user_id')
 
-    // Return all todos belonging to one person
     .put(function(req, res) {
-        console.log('Getting todo by user id');
+
         var user_id = req.params.user_id;
  
         User.findById(user_id, function(err, user) {
@@ -272,8 +291,6 @@ router.route('/user/:user_id')
             if (!user) {
                 return res.send(500, err);
             }
-
-            // console.log(user);
 
             // Update background associated with user
             var backgroundName = req.body.backgroundName;
@@ -289,54 +306,5 @@ router.route('/user/:user_id')
         })
     })
 
-
-
-
-
-
-
-
-
-
-
-
-
-// // Todos by user
-// router.route('/todos/user/:user_id') 
-
-//     // Return all todos belonging to one person
-//     .get(function(req, res) {
-//         console.log('Getting todo by user id');
- 
-//         Todo.find({ user_id: req.params.user_id }, function(err, todo) {
-//             if (err) {
-//                 res.send(500, err);
-//             }
-//             else {
-//                 res.json(todo)
-//             }
-//         })
-//     })
-
-
-
-
-
-// // Get homepage
-// router.get('/', function(req, res) {
-//     res.send('Index page');
-//     // console.log('Render index')
-//     // res.render('layouts/index');
-// });
-
-// function ensureAuthenticated(req, res, next) {
-//     if (req.isAuthenticated()) {
-//         return next();
-//     }
-//     else {
-//         req.flash('error_msg', 'You are not logged in.');
-//         res.redirect('/users/login');
-//     }
-// }
-
+    
 module.exports = router;

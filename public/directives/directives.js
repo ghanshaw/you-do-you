@@ -1,5 +1,4 @@
-console.log('directive is present');
-
+// Double click directive (mobile and desktop)
 ydyApp.directive('mobileDblclick',
     function () {
 

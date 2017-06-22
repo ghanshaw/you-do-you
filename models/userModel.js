@@ -1,8 +1,15 @@
+// ================================================= //
+// User Model
+// ================================================= //
+
 var mongoose = require('mongoose');
 var config = require('../config');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
+// ================================================= //
+// User Schema
+// ================================================= //
 
 var Schema = mongoose.Schema;
 
@@ -29,8 +36,14 @@ var userSchema = new Schema({
     }
 })
 
+// ================================================= //
+// Additional User Methods
+// ================================================= //
+
+// Generate JSON Web Token
 userSchema.methods.generateJwt = function() {
 
+    // Get secrete from env variable or config file
     var jwtSecret = process.env.JWT_SECRET || config.getJwtSecret();
     var expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
@@ -48,11 +61,12 @@ userSchema.methods.generateJwt = function() {
 var User = mongoose.model('User', userSchema);
 
 // ================================================= //
-// Restore Sample Data 
+// Restore data of sample user
 // ================================================= //
 
 User.restoreSampleData = function() {
 
+    // Details of sample user
     var sampleUser = {
         "_id": "5949c7b7f957694adcc50e1b",
         "name": "Peter Parker",
@@ -80,50 +94,3 @@ User.restoreSampleData = function() {
 
 
 module.exports = User
-
-
-
-// User.createUser = function(newUser, callback) {
-
-//     // Hash password, taken from docs
-//     bcrypt.genSalt(10, function (err, salt) {
-//         bcrypt.hash(newUser.password, salt, function (err, hash) {
-//             newUser.password = hash;
-//             newUser.save(callback);
-//         });
-//     });
-// }
-
-// User.hasUser
-
-// // Retrieve user with email
-// User.getUserByEmail = function(email, callback) {
-
-//     var query = { email: email };
-    
-
-// }
-
-// // Confirm submitted password
-// User.comparePassword = function (candidatePwd, hash, callback) {
-    
-//     // Load hash from your password DB. 
-//     bcrypt.compare(candidatePwd, hash, function (err, isMatch) {
-//         if (err) throw err;
-//         // Expects err as first arg if it exists; isMatch is boolean
-//         callback(null, isMatch);
-//     });
-// }
-
-// // Retrieve user with id
-// User.getUserById = function(id, callback) {
-//     User.findById(id, callback);
-// };
-
-
-// userSchema.methods.getBackgroundImage = function() {
-//     return backgroundImages[this.settings.backgroundImage]
-// }
-
-
-

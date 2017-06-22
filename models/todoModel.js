@@ -1,4 +1,12 @@
+// ================================================= //
+// Todo Model
+// ================================================= //
+
 var mongoose = require('mongoose');
+
+// ================================================= //
+// Todo Schema
+// ================================================= //
 
 var todoSchema = new mongoose.Schema({
     user_id: String,
@@ -18,16 +26,14 @@ var todoSchema = new mongoose.Schema({
     }
 })
 
-
 // Declare a model called Todo which was schema todoSchema
 var Todo = mongoose.model('Todo', todoSchema);
 
-
 // ================================================= //
-// Restore sample data
+// Restore todos of sample user
 // ================================================= //
 
-
+// Sample todos
 var sampleTodos = [
         {
             "user_id": "5949c7b7f957694adcc50e1b",
@@ -71,9 +77,10 @@ var sampleTodos = [
         }
     ]
 
-
+// Method to restore sample todos
 Todo.restoreSampleData = function() {
 
+    // Sample user's email
     var email = sampleTodos[0].email;
 
     // Remove all sample todos
@@ -87,6 +94,7 @@ Todo.restoreSampleData = function() {
 
                 (function() {
 
+                    // Store relevant details in closure
                     var id = t._id;
                     var user_id = t.user_id;
                     var email = t.email;

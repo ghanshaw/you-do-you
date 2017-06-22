@@ -13,17 +13,17 @@
             <div class="row toggle">
               <div 
                 class="col-xs-6 pill log-in"
-                ng-click="toggleAuthentication('login')"
-                ng-class="{ 'active': authentication.login }">Log In</div>
+                ng-click="toggleAuthForm('login')"
+                ng-class="{ 'active': authForm.login }">Log In</div>
               <div 
                 class="col-xs-6 pill sign-up"
-                ng-click="toggleAuthentication('signup')"
-                ng-class="{ 'active': authentication.signup }">Sign Up</div>
+                ng-click="toggleAuthForm('signup')"
+                ng-class="{ 'active': authForm.signup }">Sign Up</div>
             </div>
 
             <div 
               class="error alert alert-danger"
-              ng-show=" hasError() ">
+              ng-show="hasError() ">
               <div class="message">{{ getError() }}</div>
             </div>
 
@@ -32,7 +32,7 @@
               <form
                 name="signupform" 
                 class="form-signup" 
-                ng-show="authentication.signup"
+                ng-show="authForm.signup"
                 ng-submit="register()">
                 <div class="form-group">
                     <input type="text" ng-model="user.name" class="form-control" placeholder="Full Name" name="name">
@@ -56,7 +56,7 @@
               <form 
                 name="loginform" 
                 class="form-login"  
-                ng-show="authentication.login"
+                ng-show="authForm.login"
                 ng-submit="login()">
                 <div class="form-group">
                   <input type="email" ng-model="user.email" class="form-control" placeholder="Email" name="email">
